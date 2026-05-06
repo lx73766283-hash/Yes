@@ -1,0 +1,9 @@
+pyrogram==2.0.106
+tgcrypto==1.2.5
+aiohttp==3.9.5
+pycryptodome==3.20.0
+aiosqlite==0.20.0
+# Image thumbnail pipeline (videos + PDFs) -- Lanczos resize + q95 JPEG
+Pillow>=10.0
+# Neo quiz HTML generator needs BeautifulSoup to split bilingual passages
+beautifulsoup4>=4.12
