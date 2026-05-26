@@ -181,7 +181,7 @@ Statement 1: The 68th APO Governing Body Meeting was held at Vigyan Bhawan, New 
 Statement 2: APO (Asian Productivity Organization) has 21 member economies across Asia and the Pacific.
 Statement 3: India currently holds the Chairmanship of APO for the 2025-2026 term.
 
-Which of the above statements is/are correct?
+👉🏻Which of the above statements is/are correct?
 (a) Only 1 and 2
 (b) Only 1 and 3
 (c) Only 2 and 3 ✅
