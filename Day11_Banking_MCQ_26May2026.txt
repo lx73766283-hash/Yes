@@ -1,0 +1,189 @@
+Q1. Who won the Canadian Grand Prix 2026, driving for Mercedes AMG Petronas Formula One Team?
+    Lewis Hamilton
+    Max Verstappen
+    Kimi Antonelli ✅
+    George Russell
+Ex: Kimi Antonelli (19-year-old Italian, Mercedes) won Canadian GP 2026. Replaced Lewis Hamilton at Mercedes for 2026 season. Podium: Antonelli, Hamilton (Ferrari), Verstappen (Red Bull).
+
+Q2. Who was appointed as the Part-Time (Non-Executive) Chairman of Federal Bank with RBI approval in May 2026?
+    Elias George ✅
+    KVS Manian
+    K P Hormis
+    Shyam Srinivasan
+Ex: Elias George appointed Part-Time Chairman of Federal Bank for 3-year tenure. Previously served as Independent Director. RBI approval mandatory under Banking Regulation Act, 1949.
+
+Q3. International Day to End Obstetric Fistula, established by the UN in 2012, is observed on which date?
+    May 20
+    May 21
+    May 25
+    May 23 ✅
+Ex: Int'l Day to End Obstetric Fistula = May 23. Established by UN in 2012. Affects ~2 million women globally, mostly in sub-Saharan Africa and South Asia.
+
+Q4. India Post recorded what historic revenue in FY 2025-26 — one of the strongest performances in its 170+ year history?
+    Rs.12,500 Crore
+    Rs.15,373 Crore ✅
+    Rs.18,000 Crore
+    Rs.10,200 Crore
+Ex: India Post recorded Rs.15,373 Crore revenue in FY 2025-26 — one of strongest in its 170+ year history. Under Ministry of Communications (Minister: Jyotiraditya Scindia).
+
+Q5. What is the full form of QSAFE, the expert committee constituted by RBI to study quantum technology in banking?
+    Quantum Safety and Financial Ecosystem
+    Quantum Secure and Applied Financial Enterprise
+    Quantum Secure and Adaptive Financial Ecosystem ✅
+    Quantum Safety and Adaptive Financial Environment
+Ex: QSAFE = Quantum Secure and Adaptive Financial Ecosystem. Constituted by RBI to assess risks, challenges and opportunities of quantum technology for banking security.
+
+Q6. The 'Order of Mapungubwe' awarded to two Indian-origin scientists is the highest civilian honour of which country?
+    South Africa ✅
+    Nigeria
+    Kenya
+    Ghana
+Ex: Order of Mapungubwe = South Africa's highest civilian honor. Awarded by President Cyril Ramaphosa at Pretoria. Named after ancient Mapungubwe Kingdom.
+
+Q7. What type of formal arrangement did Shriram General Insurance sign with Piramal Finance to distribute insurance products?
+    Joint Venture Agreement
+    Bancassurance Agreement
+    MoU for Insurance Distribution
+    Corporate Agency Agreement ✅
+Ex: Corporate Agency Agreement allows Piramal Finance to sell Shriram's insurance products. Piramal Finance customers who take loans will also be offered insurance — cross-selling strategy.
+
+Q8. What is the full form of APO, whose 68th Governing Body Meeting was held at Bharat Mandapam, New Delhi?
+    Asian Pacific Organization
+    Asian Productivity Organization ✅
+    Asia-Pacific Operations Organization
+    Asian Productivity Outlook
+Ex: APO = Asian Productivity Organization. Est. 1961. HQ: Tokyo, Japan. Enhances productivity across Asia-Pacific through regional cooperation and capacity building.
+
+Q9. ZikZuk Technologies received RBI authorization to operate as a PPI Issuer under which Act?
+    RBI Act, 1934
+    Banking Regulation Act, 1949
+    Payment and Settlement Systems Act, 2007 ✅
+    Foreign Exchange Management Act, 1999
+Ex: ZikZuk authorized as PPI Issuer under PSS Act 2007. This Act governs all payment systems in India and is administered by RBI. Max balance for full-KYC PPI: Rs.2 Lakh.
+
+Q10. Prof. Manindra Agrawal, elected Fellow of the Royal Society, is best known for developing which landmark algorithm?
+    AKS primality test ✅
+    RSA encryption algorithm
+    Dijkstra's shortest path algorithm
+    SHA-256 cryptographic hash
+Ex: AKS primality test developed by Prof. Manindra Agrawal at IIT Kanpur (2002) — first algorithm to determine if a number is prime in polynomial time. He is Director of IIT Kanpur.
+
+Q11. What is the name of Gujarat's initiative to deliver citizen services directly via WhatsApp in partnership with Meta?
+    Digital Seva Gujarat
+    Meta Gram Seva
+    Jan Sahayak Digital
+    Sugam Digital Gujarat Initiative ✅
+Ex: 'Sugam Digital Gujarat Initiative' delivers income/caste certificates, ration card updates, grievance redressal via WhatsApp. Meta HQ: Menlo Park, California. Founded by Mark Zuckerberg.
+
+Q12. Kimi Antonelli's Canadian GP 2026 victory made him the first driver in F1 history to achieve what feat?
+    Win 5 consecutive F1 races
+    Win first 4 races in succession in a debut season ✅
+    Win a Formula One race at age 18
+    Score 4 back-to-back fastest laps
+Ex: Antonelli won Races 2-5 consecutively — first F1 driver in history to win first 4 races in succession. Mercedes won all 5 races of 2026 season (Race 1: George Russell, Races 2-5: Antonelli).
+
+Q13. Federal Bank was recently added to which global equity benchmark index, effective May 29, 2026?
+    FTSE Russell Index
+    S&P BSE Sensex
+    MSCI India Index ✅
+    Nifty 50 Index
+Ex: Federal Bank added to MSCI India Index effective May 29, 2026. Federal Bank HQ: Aluva, Kochi, Kerala. Founded: 1931 (as Travancore Federal Bank). MD & CEO: KVS Manian.
+
+Q14. Which UN body leads global campaigns to eliminate Obstetric Fistula?
+    UNFPA ✅
+    WHO
+    UNICEF
+    UN Women
+Ex: UNFPA (United Nations Population Fund) leads obstetric fistula elimination campaigns. HQ: New York, USA. Executive Director: Dr. Natalia Kanem.
+
+Q15. Piramal Finance, which signed a Corporate Agency Agreement with Shriram General Insurance, is categorized as which type of financial institution?
+    Scheduled Commercial Bank
+    Small Finance Bank
+    Development Finance Institution
+    NBFC (Non-Banking Financial Company) ✅
+Ex: Piramal Finance is an NBFC — provides banking-like services but cannot accept demand deposits. Regulated by RBI. Part of Piramal Enterprises, focused on housing finance and retail lending.
+
+Q16. The RBI's QSAFE committee, tasked with studying quantum technology risks in banking, is headed by a Professor from which institution?
+    IIT Delhi
+    IIT Madras ✅
+    IIT Bombay
+    IIT Kanpur
+Ex: Prof. Anil Prabhakar (IIT Madras) heads QSAFE committee. IIT Madras located in Chennai, Tamil Nadu — ranked India's No. 1 engineering institution (NIRF Rankings).
+
+Q17. National Productivity Council (NPC), which hosted the 68th APO Governing Body Meeting, operates under which Ministry?
+    Ministry of Finance
+    Ministry of Labour and Employment
+    DPIIT (Ministry of Commerce and Industry) ✅
+    Ministry of Science and Technology
+Ex: NPC (National Productivity Council) operates under DPIIT, Ministry of Commerce and Industry. Est. 1958. Promotes industrial productivity in India.
+
+Q18. The UPI One World Card — a PPI card designed for foreign tourists visiting India — was launched by which organization?
+    NPCI ✅
+    RBI
+    Ministry of Tourism
+    SBI
+Ex: UPI One World Card launched by NPCI for foreign nationals without Indian bank accounts. Allows UPI payments using a pre-loaded PPI card within India.
+
+Q19.
+Statement 1: India Post invested Rs.5,800 Crore under the IT 2.0 initiative for digital modernization.
+Statement 2: India Post recorded a revenue growth of Rs.2,100 Crore over the previous year in FY 2025-26.
+Statement 3: India Post was established in 1854, completing approximately 150 years of service in FY 2026.
+
+Which of the above statements is/are correct?
+(a) Only 2 and 3
+(b) Only 1 and 2 ✅
+(c) 1, 2 and 3
+(d) Only 1 and 3
+Ex: St1 True - Rs.5,800 Crore IT 2.0 investment for digital modernization. St2 True - revenue grew by Rs.2,100 Crore. St3 False - established 1854, completing ~172 years (not 150) in FY 2026.
+
+Q20. Which two Indian-origin public health scientists received South Africa's 'Order of Mapungubwe' in May 2026?
+    Vineeta Singh and Kiran Mazumdar Shaw
+    R Mashelkar and V Ramakrishnan
+    K Srinath Reddy and Prabhat Jha
+    Salim Abdool Karim and Keertan Dheda ✅
+Ex: Salim Abdool Karim (renowned HIV/AIDS researcher) and Prof. Keertan Dheda received Order of Mapungubwe. Presented by President Cyril Ramaphosa at Pretoria. Total 38 people honoured.
+
+Q21. The Canadian Grand Prix 2026 won by Kimi Antonelli was held at which circuit in Montreal, Canada?
+    Circuit de Barcelona-Catalunya
+    Circuit Gilles-Villeneuve ✅
+    Monaco Street Circuit
+    Circuit de la Sarthe
+Ex: Canadian GP held at Circuit Gilles-Villeneuve, Montreal, Canada. Named after legendary Canadian F1 driver Gilles Villeneuve.
+
+Q22. Who is the Chief Minister of Gujarat, whose government partnered with Meta to deliver citizen services via WhatsApp?
+    Vijay Rupani
+    Anandiben Patel
+    Bhupendra Patel ✅
+    Narendra Modi
+Ex: Bhupendra Patel is CM of Gujarat. Capital: Gandhinagar. Governor: Acharya Devvrat. India has the world's largest WhatsApp user base.
+
+Q23.
+Statement 1: Dr. Soumya Swaminathan is the 2nd Indian woman to be elected as a Fellow of the Royal Society.
+Statement 2: Prof. Manindra Agrawal was elected Fellow of the Royal Society for developing the RSA encryption algorithm.
+Statement 3: The Royal Society was founded in London in 1660 and is the oldest continuously active scientific academy in the UK.
+
+Which of the above statements is/are correct?
+(a) Only 1 and 2
+(b) 1, 2 and 3
+(c) Only 2 and 3
+(d) Only 1 and 3 ✅
+Ex: St1 True - 2nd Indian woman Fellow of Royal Society (father M.S. Swaminathan was elected in 1973). St2 False - known for AKS primality test, not RSA. St3 True - founded 1660, oldest in UK.
+
+Q24. Eliminating Obstetric Fistula is directly linked to which Sustainable Development Goals?
+    SDG 3 (Good Health) and SDG 5 (Gender Equality) ✅
+    SDG 4 (Quality Education) and SDG 3 (Good Health)
+    SDG 5 (Gender Equality) and SDG 6 (Clean Water)
+    SDG 1 (No Poverty) and SDG 3 (Good Health)
+Ex: Obstetric fistula elimination linked to SDG 3 (Good Health — Target 3.1: reduce maternal mortality) and SDG 5 (Gender Equality). Eliminating fistula is a key milestone for maternal health.
+
+Q25.
+Statement 1: The 68th APO Governing Body Meeting was held at Vigyan Bhawan, New Delhi.
+Statement 2: APO (Asian Productivity Organization) has 21 member economies across Asia and the Pacific.
+Statement 3: India currently holds the Chairmanship of APO for the 2025-2026 term.
+
+Which of the above statements is/are correct?
+(a) Only 1 and 2
+(b) Only 1 and 3
+(c) Only 2 and 3 ✅
+(d) 1, 2 and 3
+Ex: St1 False - held at Bharat Mandapam, New Delhi (not Vigyan Bhawan). St2 True - 21 member economies. St3 True - India chairs APO for 2025-2026 term.
