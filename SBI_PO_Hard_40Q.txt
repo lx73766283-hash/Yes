@@ -1,0 +1,384 @@
+Q1. Read the passage carefully. The parliamentary standing committee's CONTENTIOUS (1) interpretation of the fiscal decentralisation bill triggered a chain of events, ultimately proving the minister's earlier CONCILIATORY (2) overtures to be merely performative.
+
+👉🏻 Which of the following MOST PRECISELY captures the logical tension between words (1) and (2) as used in the passage?
+(1) signals the outcome that (2) was designed to prevent, yet (2) precedes (1) chronologically
+The coexistence of (1) and (2) is grammatically impossible in a single contextual frame
+(2) is a tactical antecedent deployed to mask the inevitability of (1) ✅
+(1) and (2) are partial synonyms sharing the semantic root of negotiation
+Ex: Contentious means dispute-causing; conciliatory means peace-seeking. The conciliatory stance was a strategic facade preceding the inevitable contentious outcome — a nuanced political manoeuvre.
+
+Q2. Five words are given below. Four share a precise contextual relationship in the domain of ARGUMENT SUPPORT. Identify the ODD ONE OUT.
+Buttress
+Corroborate
+Substantiate
+Vitiate ✅
+Bolster
+Ex: Vitiate means to impair or destroy the validity of something — the exact opposite of supporting an argument. All others mean to strengthen or reinforce a claim.
+
+Q3. Identify the statement(s) where *BLASPHEMOUS* has been used with CONTEXTUALLY INCORRECT semantic loading.
+
+I. The academic's blasphemous departure from Keynesian orthodoxy was condemned by economists who treated theoretical frameworks as inviolable doctrine.
+
+II. The congregation unanimously declared the reformist liturgical modifications blasphemous, citing centuries of unbroken ecclesiastical tradition.
+
+III. His blasphemous disregard for the constitutional provisions was treated as a criminal offence under statutory law.
+
+👉🏻 Select correct option
+Only I and III ✅
+Only II and III
+Only I and II
+All I, II and III
+Ex: Blasphemous strictly means disrespect toward religion or sacred beliefs. Statement I misuses it for academic dissent; Statement III conflates it with legal/constitutional violation. Only Statement II uses it in its precise religious context.
+
+Q4. The intelligence operative deployed an elaborate ________ that not only obscured the mission's true objectives but also ________ suspicion toward a rival agency, engineering a double layer of institutional misdirection.
+concealment, accentuated
+obfuscation, buttressed
+camouflage, deflected ✅
+shroud, reinforced
+Ex: Camouflage means to disguise or conceal; deflected means to redirect suspicion away — together they describe a sophisticated deception strategy. The distractors use near-synonyms for the first blank but fail contextually in the second.
+
+Q5. Statement A: The conglomerate's quarterly disclosure report presented impeccably curated financial metrics that glossed over systemic liquidity shortfalls.
+
+Statement B: Independent auditors, however, systematically dismantled every layer of the management's constructed narrative.
+
+👉🏻 Which pair of words from the vocabulary MOST PRECISELY maps to the respective actions in Statements A and B?
+Conceal / Reveal
+Camouflage / Buttress ✅
+Shroud / Corroborate
+Obfuscate / Accentuate
+Ex: Camouflage captures the deliberate concealment in Statement A; Buttress captures the auditors' act of reinforcing counter-evidence in Statement B. The other options are either partial matches or semantically misaligned.
+
+Q6. The BELEAGUERED administration, despite mounting external criticism, attempted to project an image of institutional resilience.
+
+👉🏻 Select the option that correctly replaces BELEAGUERED without altering the precise connotative weight of the sentence.
+An intimidated
+An embattled ✅
+An overwhelmed
+A pressured
+Ex: Embattled uniquely carries the sense of being persistently under attack from multiple directions — matching beleaguered's connotation of institutional siege. Overwhelmed implies capacity failure; pressured lacks the sustained-hostility dimension.
+
+Q7. Five words are given below. Four are contextually synonymous in the specific domain of PURPOSELESS ACTION. Identify the ODD ONE OUT.
+Desultory
+Cursory
+Haphazard
+Aimless
+Circumspect ✅
+Ex: Circumspect means cautious and carefully considering all circumstances — a quality of deliberate purposefulness, opposite to the aimless/disorganised cluster. All others indicate lack of plan or focus.
+
+Q8. Identify the statement(s) where *HAMSTRUNG* has been used in a SEMANTICALLY VALID manner.
+
+I. The constitutional amendment, ironically, hamstrung the very judicial bodies it purported to empower, by mandating procedural redundancies that paralysed case resolution.
+
+II. The athlete, hamstrung by years of disciplined training, broke three national records in a single championship.
+
+III. Fragmented coalition politics hamstrung the treasury's capacity to implement a coherent medium-term fiscal consolidation roadmap.
+
+👉🏻 Select correct option
+Only I and III ✅
+Only II and III
+Only I and II
+All I, II and III
+Ex: Hamstrung means restricted or rendered powerless. Statement II inverts the meaning — disciplined training empowers, not hamstrings. Statements I and III correctly depict constraints that neutralise functioning capacity.
+
+Q9. The forensic examiner's meticulous analysis of the ________ revealed a pattern of subcutaneous haematoma inconsistent with the official narrative of accidental death, compelling the magistrate to reopen the inquiry.
+survivor
+specimen
+cadaver ✅
+subject
+Ex: Cadaver specifically denotes a dead human body — the clinical forensic context demands this precision. Specimen and subject are too generic; survivor is contradictory.
+
+Q10. Statement A: The tribunal adopted an erratic schedule of hearings with no discernible thematic or procedural continuity across sessions.
+
+Statement B: Legal observers widely criticised the quality and depth of the resulting adjudicatory output.
+
+👉🏻 Which single word from the vocabulary encapsulates the tribunal's approach in Statement A, ALSO causally explaining Statement B?
+Haphazard
+Aimless
+Desultory ✅
+Cursory
+Ex: Desultory is the precise term — it combines absence of plan, disconnectedness, and lack of purposefulness. Unlike haphazard (random) or cursory (superficial), desultory implies a structural failure of process, which directly causes the quality deficit in Statement B.
+
+Q11. Match Column A (words) with Column B (most precise one-line contextual definitions).
+
+1. Accentuate
+2. Buttress
+3. Incongruous
+
+A. Reinforce through supplementary evidence or structural addition
+B. Create a perceptible mismatch between an element and its contextual environment
+C. Heighten the salience of a feature beyond its baseline prominence
+
+👉🏻 Choose the correct matching option
+1-A, 2-C, 3-B
+1-C, 2-A, 3-B ✅
+1-B, 2-A, 3-C
+1-C, 2-B, 3-A
+Ex: Accentuate = heighten salience (C); Buttress = reinforce through addition (A); Incongruous = contextual mismatch (B). Distractors deliberately mix near-correct definitions to prevent elimination.
+
+Q12. The researcher's meticulous reconstruction of the dynasty's ________ revealed not only biological descent but also a sophisticated pattern of strategic matrimonial alliances designed to consolidate territorial and mercantile dominance across four centuries.
+Horticulture
+Genealogy ✅
+Heliotherapy
+Cypher
+Ex: Genealogy means a documented line of ancestral descent — uniquely fitting for dynastic reconstruction. The distractors are from the same one-word-substitute category, designed to trap students who are imprecise about meanings.
+
+Q13. The dermatological protocol recommended a controlled regimen of ________ as a complementary intervention, citing emerging evidence that calibrated UV exposure modulates immunological pathways implicated in autoimmune skin disorders.
+Genealogy
+Horticulture
+Cypher
+Heliotherapy ✅
+Ex: Heliotherapy means therapeutic use of sunlight. The clinical language (UV exposure, immunological pathways) demands this specific term. All distractors are plausible-seeming vocabulary words from the same slide.
+
+Q14. The intercepted communication was encoded using a layered ________ that combined transposition matrices with polyalphabetic substitution, rendering conventional frequency-analysis decryption techniques entirely ineffective.
+Genealogy
+Heliotherapy
+Horticulture
+Cypher ✅
+Ex: Cypher means a secret or disguised way of writing/encoding. The technical cryptography context (transposition matrices, polyalphabetic substitution) uniquely calls for this word. Distractors are all co-listed vocabulary to test precision.
+
+Q15. The botanical institute's curriculum integrated advanced ________ modules covering grafting techniques, soil chemistry modification, and precision-controlled greenhouse ecosystems for tropical plant propagation.
+Genealogy
+Heliotherapy
+Horticulture ✅
+Cypher
+Ex: Horticulture is the art and science of garden cultivation. The specific technical context (grafting, soil chemistry, greenhouses) demands this word precisely.
+
+Q16. Identify the statement(s) where SAVE UP has been used INCORRECTLY.
+
+I. The climate task force is saving up regulatory capital to deploy during the next legislative window.
+
+II. The cooperative systematically saved up grain reserves across harvest cycles as a buffer against seasonal shortfalls.
+
+III. The committee decided to save up the contentious agenda items for a special session rather than rush proceedings.
+
+👉🏻 Select correct option
+Only I and III ✅
+Only I and II
+Only II and III
+All I, II and III
+Ex: Save up means to accumulate money or resources. Statement II is correct (saving grain reserves). Statements I and III misuse it — regulatory capital doesn't accumulate like money; agenda items are not "saved up" but deferred.
+
+Q17. The trade attaché was formally ________ by a delegation of senior commerce ministry officials, a diplomatic gesture underscoring the bilateral significance of the impending trade liberalisation framework negotiations.
+run off
+seen about
+seen off ✅
+saved up
+Ex: Seen off means to bid farewell to someone departing. The diplomatic farewell ceremony context precisely fits this phrasal verb. The distractors are all plausible phrasal verbs from the same vocabulary set.
+
+Q18. The municipal authority convened an emergency session to ________ the feasibility of relocating the industrial corridor, balancing projected economic gains against documented environmental impact assessments.
+save up
+run off
+see off
+see about ✅
+Ex: See about means to consider, arrange, or attend to something. The act of convening to examine feasibility is precisely "seeing about" an issue. Students often confuse this with "see off" (farewell) or "run off" (drive away).
+
+Q19. Identify the statement(s) where RUN OFF has been used CORRECTLY.
+
+I. The border management task force deployed rapid-response units to run off armed non-state actors exploiting ungoverned territorial corridors.
+
+II. The publishing house ran off thousands of commemorative copies ahead of the centenary launch event.
+
+III. Security personnel were instructed to run off unauthorised protestors who had breached the perimeter of the restricted administrative zone.
+
+👉🏻 Select correct option
+Only I and III ✅
+Only I and II
+Only II and III
+All I, II and III
+Ex: Run off means to make someone leave/drive away forcibly. Statements I and III correctly deploy this sense. Statement II misuses it to mean "print/produce copies" — a different meaning of "run off" not covered in this vocabulary set.
+
+Q20. Statement A: The central bank governor's resignation, announced without prior indication or internal briefing, caught both market participants and ministry officials entirely unprepared.
+
+Statement B: The benchmark index recorded its steepest single-session decline in fourteen months within hours of the announcement.
+
+👉🏻 Which idiom MOST PRECISELY captures the nature of the event in Statement A, and also implicitly explains Statement B?
+Blue pencil
+Blue-ribbon
+Talk a blue streak
+A bolt from the blue ✅
+Ex: A bolt from the blue means a sudden, completely unexpected event with major impact. This uniquely captures both the unexpectedness in Statement A and the consequential shock in Statement B. The distractors are plausible "blue" idioms designed to confuse.
+
+Q21. The parliamentary sub-committee constituted a ________ investigative panel comprising former Supreme Court justices, retired RBI governors, and senior constitutional law scholars to examine systemic irregularities in cooperative banking supervision.
+contentious
+blasphemous
+blue-ribbon ✅
+desultory
+Ex: Blue-ribbon means of the highest quality or excellence. A panel of former SC justices and RBI governors is definitionally a blue-ribbon committee. Distractors are all vocabulary words that sound contextually plausible.
+
+Q22. The senior spokesperson continued to ________ during the press briefing, delivering a voluminous stream of prepared statements, tangential anecdotes, and rhetorical questions — none of which addressed the substantive query raised by the investigative journalist.
+blue pencil
+beat black and blue
+see off
+talk a blue streak ✅
+Ex: Talk a blue streak means to speak rapidly and continuously, typically without substance. The context (voluminous, tangential, not addressing the query) precisely maps to this idiom. Distractors are all co-listed idioms to challenge precision.
+
+Q23. The information ministry invoked national security provisions to ________ three full sections of the parliamentary inquiry report before authorising its public release.
+talk a blue streak
+save up
+blue pencil ✅
+run off
+Ex: Blue pencil means to censor, edit, or excise portions of written content. Invoking authority to remove sections before publication is the precise usage. Distractors combine idioms and phrasal verbs to prevent pattern-matching.
+
+Q24. The veteran's prolonged beatings in custody, which left extensive contusion patterns across his torso and extremities, were later documented in the human rights tribunal's findings as amounting to being ________.
+talked a blue streak at
+seen off
+run off
+beaten black and blue ✅
+Ex: Beat black and blue means to hit someone severely, causing bruising; also used for harsh treatment. The medical-legal context (contusion patterns, human rights tribunal) precisely requires this idiom.
+
+Q25. Consider the following statements about INCONGRUOUS.
+
+Statement I: A behavioural economist noted the incongruous spectacle of austerity-era fiscal policy coexisting with an unprecedented expansion of discretionary government expenditure in non-priority sectors.
+
+Statement II: The heritage conservation committee found the proposed mixed-use skyscraper fundamentally incongruous within the UNESCO-protected buffer zone of the 16th-century architectural ensemble.
+
+Statement III: Her incongruous academic performance — consistently ranked among the top three in theoretical examinations — earned her the institute's highest research fellowship.
+
+👉🏻 Select correct option
+Only I and II ✅
+Only II and III
+Only I and III
+All I, II and III
+Ex: Incongruous means out of place, inappropriate, or not in harmony. Statements I and II use it correctly — fiscal contradiction and architectural mismatch. Statement III misuses it: exceptional performance is not incongruous in an academic context; it is consistent and expected for high-ranking students.
+
+Q26. The opposition moved a censure motion arguing that the incumbent government's economic policy had ________ the national infrastructure financing authority through contradictory mandates, under-capitalisation, and politically motivated leadership appointments that paralysed institutional decision-making.
+empowered
+facilitated
+assisted
+beleaguered ✅
+Ex: Beleaguered means to put under sustained pressure or harassment. The multi-pronged institutional assault described demands this word's precise sense. All distractors are antonyms or near-antonyms — designed to mislead students who rely on intuition rather than contextual analysis.
+
+Q27. The governing council's approach to regulatory reform — characterised by non-sequential agenda progression, unexplained gaps between deliberation cycles, and inconsistent application of procedural norms — was widely described in expert commentary as ________.
+purposeful
+systematic
+meticulous
+desultory ✅
+Ex: Desultory means lacking plan, purpose, or enthusiasm; disconnected. The three descriptors (non-sequential, unexplained gaps, inconsistent) collectively define desultory conduct. All distractors are antonyms that could trap students who misread the negative characterisation.
+
+Q28. The investigative commission, tasked with examining allegations of financial misappropriation, found its operational mandate systematically ________ by a combination of executive privilege claims, inter-ministerial jurisdictional disputes, and strategic witness non-cooperation.
+buttressed
+accentuated
+empowered
+hamstrung ✅
+Ex: Hamstrung means rendered powerless through external constraints. The convergence of three specific obstruction mechanisms precisely demands hamstrung. Distractors include the word's own antonym (empowered) and contextually irrelevant vocabulary.
+
+Q29. The medicolegal expert testified that the precise determination of the post-mortem interval required not only standard thanatological assessment of the ________ but also advanced entomological evidence and ambient temperature reconstructions spanning the seventy-two hours preceding discovery.
+survivor
+animate subject
+patient
+cadaver ✅
+Ex: Cadaver means a dead human body. The medicolegal, thanatological, and post-mortem context uniquely requires cadaver. The distractors (survivor, animate subject, patient) are deliberately chosen as they are all contextually plausible human-referent terms — only cadaver is semantically accurate.
+
+Q30. Match Column A (phrasal verbs and idioms) with Column B (precise contextual meanings).
+
+1. Blue pencil
+2. A bolt from the blue
+3. See about
+
+A. To arrange, attend to, or investigate a matter requiring deliberate consideration
+B. A completely unanticipated occurrence producing disproportionate disruptive impact
+C. To redact, censor, or excise portions of a text on grounds of sensitivity or policy
+
+👉🏻 Choose the correct matching option
+1-B, 2-C, 3-A
+1-C, 2-A, 3-B
+1-A, 2-B, 3-C
+1-C, 2-B, 3-A ✅
+Ex: Blue pencil = censor/redact (C); A bolt from the blue = unanticipated disruptive event (B); See about = arrange or attend to (A). All distractors are constructed by rotating correct definitions to prevent elimination through partial matching.
+
+Q31. Read the passage. The urban development authority's DESULTORY (1) approach to master planning was systematically ACCENTUATED (2) by media scrutiny, forcing stakeholders to confront the structural incoherence that administrative opacity had long CAMOUFLAGED (3).
+
+👉🏻 Which of the following MOST ACCURATELY describes the logical chain formed by words (1), (2), and (3) in the passage?
+(1) and (3) are synonyms deployed to reinforce each other while (2) bridges them causally
+(2) reversed the concealment effected by (3), thereby making (1) publicly visible ✅
+(3) is a prerequisite for (1), while (2) is an unrelated intensifier
+(1), (2), and (3) all belong to the semantic domain of deliberate institutional action
+Ex: Desultory = the flaw; camouflaged = the flaw was hidden by opacity; accentuated = media scrutiny made it prominent. Option B correctly maps the causal chain: concealment (3) was undone by intensification (2) of visibility, revealing the disorder (1).
+
+Q32. Five expressions are given below. Four belong to the semantic category of SUDDEN OR UNEXPECTED EVENTS. Identify the ODD ONE OUT.
+A bolt from the blue
+Out of nowhere
+Unheralded development
+Talk a blue streak ✅
+Catch off guard
+Ex: Talk a blue streak means to speak rapidly and without pause — it belongs to the domain of communication, not unexpectedness. All others describe events or situations that are sudden and unanticipated.
+
+Q33. Statement A: The regulatory sandbox initiative provided fintech innovators with a controlled environment free from conventional compliance overhead.
+
+Statement B: The domestic payment infrastructure scaled rapidly with minimal incumbent resistance.
+
+👉🏻 Which connector MOST PRECISELY captures the causal-resultative relationship between Statement A and Statement B?
+However
+Notwithstanding
+Consequently ✅
+Simultaneously
+Ex: Consequently indicates that B is the direct result of A. The sandbox (A) reduced compliance barriers, which caused rapid scaling (B). However and notwithstanding imply contrast; simultaneously implies parallel but independent occurrence.
+
+Q34. The landscape architect's submission integrated principles drawn from advanced ________, proposing a micro-climate responsive design that interwove indigenous tree corridors, precision-irrigated edible landscapes, and climate-adaptive ground cover across the 40-hectare urban regeneration precinct.
+Genealogy
+Heliotherapy
+Cypher
+Horticulture ✅
+Ex: Horticulture encompasses the science and art of garden cultivation and management. The specific technical elements (tree corridors, edible landscapes, ground cover, micro-climate) are unambiguously horticultural. All distractors are from the same vocabulary group to demand precise recall.
+
+Q35. Identify the statement(s) where *ACCENTUATE* has been used with PRECISION.
+
+I. The curators accentuated the fragility of the Mughal-era manuscripts by employing calibrated LED lighting that directed visitor attention toward the intricate calligraphic margins.
+
+II. The committee's accentuated response to the crisis involved deploying emergency relief funds within 24 hours of the flood assessment report.
+
+III. Strategic placement of the testimony in the prosecutor's opening remarks served to accentuate the pattern of premeditated financial manipulation before the tribunal could form a preliminary assessment.
+
+👉🏻 Select correct option
+Only I and III ✅
+Only I and II
+Only II and III
+All I, II and III
+Ex: Accentuate means to make something more noticeable or prominent. Statements I (lighting directing attention) and III (strategic placement making patterns prominent) use it correctly. Statement II misuses it — "accentuated response" conflates the word with speed or emphasis of action, not prominence.
+
+Q36. The multilateral negotiating framework had ________ the host country's delegation by simultaneously imposing procedural constraints on speaking time, restricting access to technical documentation, and mandating last-minute agenda revisions — a convergence of tactics that effectively neutralised their bargaining leverage.
+empowered
+buttressed
+facilitated
+beleaguered ✅
+Ex: Beleaguered means to surround, harass, or put under constant pressure. The three simultaneous constraint mechanisms constitute a beleaguering strategy. Empowered and buttressed are direct antonyms; facilitated is contextually irrelevant.
+
+Q37. Statement A: The government's new urban housing policy mandated allocation of 40% of new residential developments for economically weaker sections.
+
+Statement B: Real estate developers announced an immediate freeze on all new project launches pending legal review.
+
+👉🏻 Which word from the vocabulary MOST PRECISELY describes the policy's effect on real estate developers as implied in Statement B?
+Camouflage
+Accentuate
+Beleaguered ✅
+Desultory
+Ex: Beleaguered (used adjectivally) describes the position the developers found themselves in — harassed or put under pressure. The freeze announcement is a direct indicator of operational paralysis under pressure. Camouflage and accentuate are semantically unrelated; desultory describes process, not position.
+
+Q38. The ________ of the coastal community revealed a remarkably consistent pattern of endogamic marriage across twelve generations, with kinship networks deliberately reinforced to preserve fishing rights and inter-island trade monopolies.
+Horticulture
+Cypher
+Heliotherapy
+Genealogy ✅
+Ex: Genealogy means the line of descent traced from an ancestor. Twelve-generation mapping with kinship networks is definitionally genealogical. The distractors all originate from the same one-word-substitute vocabulary cluster.
+
+Q39. Read the cloze passage carefully.
+
+The parliamentary ethics committee's (1)________ investigation into campaign finance irregularities was (2)________ by both the ruling party's procedural obstructions and the opposition's opportunistic co-option of the inquiry for electoral purposes. Despite the appointment of a (3)________ panel of constitutional experts, the final report appeared (4)________ with the gravity of the documented violations, undermining its credibility entirely.
+
+👉🏻 Which set of words MOST PRECISELY fills blanks (1), (2), (3), and (4) respectively?
+systematic, empowered, mediocre, consistent
+methodical, assisted, ordinary, harmonious
+desultory, hamstrung, blue-ribbon, incongruous ✅
+purposeful, beleaguered, contentious, compatible
+Ex: (1) desultory = lacking plan/purpose; (2) hamstrung = made powerless by obstruction; (3) blue-ribbon = of highest quality; (4) incongruous = out of place/incompatible with the gravity. This is the only option where all four words fit their respective blanks with full contextual precision.
+
+Q40. Statement A: The diplomat's casual and evasive manner during the press conference was widely interpreted as deliberate institutional misdirection.
+
+Statement B: Despite the voluminous nature of his remarks, substantive clarification remained conspicuously absent throughout the session.
+
+👉🏻 Which combination of expressions from the vocabulary MOST COMPLETELY accounts for BOTH the manner (Statement A) AND the communicative behaviour (Statement B)?
+Camouflage / Blue pencil
+Incongruous / Desultory
+Camouflage / Talk a blue streak ✅
+Hamstrung / A bolt from the blue
+Ex: Camouflage captures the deliberate institutional misdirection (A — disguising true intent); Talk a blue streak captures the voluminous but substanceless communication (B). This is the only pairing where both words align with their respective statements with full semantic precision. All distractors are plausible vocabulary pairs that fail on at least one of the two statements.
