@@ -414,12 +414,12 @@ Ex: Genealogy = traced line of descent with kinship and inheritance. Chronology 
 
 Q39. Read the passage carefully. The parliamentary standing committee's *CONTENTIOUS* (1) interpretation of the fiscal decentralisation bill triggered a chain of events, ultimately proving the minister's earlier *CONCILIATORY* (2) overtures to be merely performative.
 
-👉🏻 Which option MOST PRECISELY captures the logical tension between words (1) and (2) as used in the passage?
-(1) (1) signals the outcome that (2) was designed to prevent, yet (2) precedes (1) chronologically
-The coexistence of (1) and (2) is grammatically impossible in a single contextual frame
-(2) (2) is a tactical antecedent deployed to mask the inevitability of (1) ✅
-(1) (1) and (2) are partial synonyms sharing the semantic root of negotiation
-Ex: Conciliatory was the strategic facade preceding the inevitable contentious outcome. Option 1 is partly true but misses the masking intent; (2) was deployed to obscure what (1) made inevitable.
+👉🏻 Which option MOST PRECISELY captures the logical tension between words *1* and *2* as used in the passage?
+(1)  *1*signals the outcome that *2* was designed to prevent, yet *2* precedes *1* chronologically
+The coexistence of *1* and *2* is grammatically impossible in a single contextual frame
+(2) *2*is a tactical antecedent deployed to mask the inevitability of *1* ✅
+(1) *1*and *2* are partial synonyms sharing the semantic root of negotiation
+Ex: Conciliatory was the strategic facade preceding the inevitable contentious outcome. Option 1 is partly true but misses the masking intent; *2* was deployed to obscure what *1* made inevitable.
 
 Q40. Statement A: The diplomat's evasive bearing during the press conference was widely interpreted as deliberate institutional misdirection.
 
