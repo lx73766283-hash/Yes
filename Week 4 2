@@ -1,0 +1,774 @@
+cat > /home/claude/build_complete_weekly.py << 'MAINEOF'
+# ══════════════════════════════════════════════════════════════════════════════
+# COMPLETE PATCHED WEEKLY CA PDF — 21–27 June 2026
+# 100% Coverage: All 7 missing items added + NITI Aayog CEO fixed
+# ══════════════════════════════════════════════════════════════════════════════
+
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from reportlab.lib.units import mm
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable, PageBreak
+from reportlab.lib.enums import TA_CENTER
+from reportlab.platypus.flowables import Flowable
+from reportlab.lib.colors import HexColor
+
+NAV=HexColor("#0D1B2A"); GOLD=HexColor("#E8A838"); SKY=HexColor("#4FC3F7")
+PRP=HexColor("#7B1FA2"); TEA=HexColor("#00897B"); WHT=colors.white; BLK=colors.black
+ROW1=HexColor("#F5F7FA"); ROW2=HexColor("#FFFFFF"); BDR=HexColor("#CFD8DC"); GKN=HexColor("#0A2540")
+W,H=A4; LM=RM=13*mm; TM,BM=22*mm,13*mm
+
+def S(name,**kw):
+    base=dict(fontName="Helvetica",fontSize=8.5,leading=13,textColor=BLK,spaceAfter=2)
+    base.update(kw); return ParagraphStyle(name,**base)
+
+s_toc=S("toc",fontSize=8,textColor=HexColor("#90CAF9"),leading=12)
+s_th=S("th",fontName="Helvetica-Bold",fontSize=8,textColor=WHT,alignment=TA_CENTER,leading=11)
+s_td=S("td",fontSize=7.8,textColor=BLK,leading=11)
+s_bull=S("bull",fontSize=8.5,leftIndent=11,firstLineIndent=-11,leading=13,spaceAfter=2)
+s_sg=S("sg",fontSize=8.5,leftIndent=11,firstLineIndent=-11,leading=13,spaceAfter=2,textColor=HexColor("#1A237E"))
+s_kt_h=S("kt_h",fontName="Helvetica-Bold",fontSize=8.5,textColor=PRP,spaceBefore=4,spaceAfter=1)
+s_kt_b=S("kt_b",fontSize=8,textColor=HexColor("#4A148C"),leftIndent=6,spaceAfter=4,leading=12)
+s_gk_s=S("gk_s",fontName="Helvetica-Bold",fontSize=8.5,textColor=TEA,spaceBefore=6,spaceAfter=2)
+s_ft=S("ft",fontSize=7,textColor=HexColor("#90A4AE"),alignment=TA_CENTER)
+s_fix=S("fix",fontSize=8,textColor=HexColor("#B71C1C"),leftIndent=6,leading=12,spaceAfter=2)
+
+def uw(): return W-LM-RM
+
+class CoverBand(Flowable):
+    def __init__(self,w): Flowable.__init__(self); self.W=w; self.height=210
+    def draw(self):
+        c=self.canv
+        c.setFillColor(NAV); c.roundRect(0,0,self.W,self.height,8,fill=1,stroke=0)
+        c.setStrokeColor(GOLD); c.setLineWidth(2.5)
+        c.line(18,self.height-16,self.W-18,self.height-16); c.line(18,14,self.W-14,14)
+        c.setFillColor(GOLD); c.setFont("Helvetica-Bold",25)
+        c.drawCentredString(self.W/2,self.height-56,"Weekly Current Affairs")
+        c.setFillColor(WHT); c.setFont("Helvetica-Bold",14)
+        c.drawCentredString(self.W/2,self.height-79,"21 June — 27 June 2026  |  Compilation Edition")
+        c.setFillColor(HexColor("#B0BEC5")); c.setFont("Helvetica",8.5)
+        c.drawCentredString(self.W/2,self.height-97,"Part 1: Current Affairs News   |   Part 2: Complete Static GK")
+        c.setFillColor(GOLD); c.roundRect(self.W/2-75,self.height-129,150,18,5,fill=1,stroke=0)
+        c.setFillColor(NAV); c.setFont("Helvetica-Bold",8)
+        c.drawCentredString(self.W/2,self.height-123,"Telegram: DailyCA_QuizZ")
+        for x,lbl in [(self.W*0.27,"PART 1"),(self.W*0.73,"PART 2")]:
+            col=GOLD if "1" in lbl else SKY
+            c.setFillColor(col); c.setFont("Helvetica-Bold",9); c.drawCentredString(x,self.height-155,lbl)
+            c.setFillColor(WHT); c.setFont("Helvetica",8)
+            c.drawCentredString(x,self.height-167,"News (21–27 June)" if "1" in lbl else "Static GK & Reference")
+
+class SecBar(Flowable):
+    def __init__(self,num,title,w,gk=False): Flowable.__init__(self); self.num,self.title,self.W,self.gk=num,title,w,gk; self.height=22
+    def draw(self):
+        c=self.canv; c.setFillColor(GKN if self.gk else NAV); c.roundRect(0,0,self.W,self.height,5,fill=1,stroke=0)
+        c.setFillColor(GOLD); c.roundRect(7,4,26,14,3,fill=1,stroke=0)
+        c.setFillColor(NAV); c.setFont("Helvetica-Bold",8.5); c.drawCentredString(20,8,self.num)
+        c.setFillColor(WHT); c.setFont("Helvetica-Bold",11.5); c.drawString(40,6,f"  {self.title}")
+
+class NHBar(Flowable):
+    def __init__(self,hl,dt,w): Flowable.__init__(self); self.hl,self.dt,self.W=hl,dt,w; self.height=19
+    def draw(self):
+        c=self.canv; c.setFillColor(HexColor("#E8F4FD")); c.roundRect(0,0,self.W,self.height,4,fill=1,stroke=0)
+        c.setFillColor(GOLD); c.rect(0,0,4,self.height,fill=1,stroke=0)
+        c.setFillColor(NAV); c.roundRect(self.W-52,4,48,11,3,fill=1,stroke=0)
+        c.setFillColor(GOLD); c.setFont("Helvetica-Bold",7); c.drawCentredString(self.W-28,7.5,self.dt)
+        c.setFillColor(NAV); c.setFont("Helvetica-Bold",8.5); c.drawString(10,5.5,self.hl[:80])
+
+class PartDiv(Flowable):
+    def __init__(self,w,title): Flowable.__init__(self); self.W,self.title=w,title; self.height=36
+    def draw(self):
+        c=self.canv; c.setFillColor(GKN); c.roundRect(0,0,self.W,self.height,6,fill=1,stroke=0)
+        c.setStrokeColor(GOLD); c.setLineWidth(1.5)
+        c.line(16,self.height-12,self.W-16,self.height-12); c.line(16,10,self.W-16,10)
+        c.setFillColor(GOLD); c.setFont("Helvetica-Bold",13); c.drawCentredString(self.W/2,self.height/2-5,self.title)
+
+def sec(num,title,gk=False): return [Spacer(1,6),SecBar(num,title,uw(),gk=gk),Spacer(1,5)]
+def nh(hl,dt): return [NHBar(hl,dt,uw()),Spacer(1,2)]
+def b(t): return Paragraph(f'<font color="#E8A838">&#9679;</font>  {t}',s_bull)
+def sg(t): return Paragraph(f'<font color="#E8A838">&#9670;</font>  {t}',s_sg)
+def kt(term,defn): return [Paragraph(f"&#9632; {term}:",s_kt_h),Paragraph(defn,s_kt_b)]
+def rule(): return HRFlowable(width="100%",thickness=0.5,color=BDR,spaceBefore=4,spaceAfter=4)
+def gksub(t): return [Spacer(1,4),Paragraph(f"&#9632;  {t}",s_gk_s),Spacer(1,2)]
+def fix(t): return Paragraph(f'<font color="#B71C1C">&#9888;</font>  {t}',s_fix)
+
+def mktbl(headers,rows,cws,alt=ROW1):
+    u=uw(); cws=[u*x for x in cws]
+    data=[[Paragraph(h,s_th) for h in headers]]
+    for row in rows: data.append([Paragraph(str(c),s_td) for c in row])
+    ts=TableStyle([("BACKGROUND",(0,0),(-1,0),NAV),("FONTNAME",(0,0),(-1,0),"Helvetica-Bold"),
+        ("FONTSIZE",(0,0),(-1,-1),7.8),("ALIGN",(0,0),(-1,-1),"LEFT"),("VALIGN",(0,0),(-1,-1),"MIDDLE"),
+        ("ROWBACKGROUNDS",(0,1),(-1,-1),[ROW2,alt]),("GRID",(0,0),(-1,-1),0.35,BDR),
+        ("TOPPADDING",(0,0),(-1,-1),3),("BOTTOMPADDING",(0,0),(-1,-1),3),
+        ("LEFTPADDING",(0,0),(-1,-1),5),("RIGHTPADDING",(0,0),(-1,-1),4)])
+    return Table(data,colWidths=cws,style=ts,repeatRows=1)
+
+def on_page(canvas,doc):
+    canvas.saveState(); canvas.setFillColor(NAV); canvas.rect(0,H-TM+2,W,TM,fill=1,stroke=0)
+    canvas.setFillColor(GOLD); canvas.setFont("Helvetica-Bold",7.5)
+    canvas.drawString(LM,H-14,"Weekly Current Affairs  |  21-27 June 2026  |  100% Coverage Edition")
+    canvas.setFillColor(HexColor("#B0BEC5")); canvas.setFont("Helvetica",7)
+    canvas.drawRightString(W-RM,H-14,f"Page {doc.page}  |  DailyCA_QuizZ"); canvas.restoreState()
+
+def build():
+    s=[]; u=uw()
+    s+=[Spacer(1,4),CoverBand(u),Spacer(1,10)]
+
+    # TOC
+    toc_rows=[["01  National","02  International"],
+              ["03  Banking & Finance","04  Economy & Business"],
+              ["05  Defence & Security","06  Appointments"],
+              ["07  Awards & Honours (incl. Books)","08  Sports"],
+              ["09  Science & Technology","10  Important Days"],
+              ["11  Obituaries","-- PART 2: STATIC GK BELOW --"]]
+    td=[[Paragraph("CONTENTS — 21-27 JUNE 2026  |  100% COVERAGE",ParagraphStyle("toch",fontName="Helvetica-Bold",fontSize=9,textColor=GOLD,alignment=TA_CENTER)),"" ]]
+    for r in toc_rows: td.append([Paragraph(r[0],s_toc),Paragraph(r[1],s_toc)])
+    ts=TableStyle([("BACKGROUND",(0,0),(-1,0),NAV),("SPAN",(0,0),(-1,0)),
+        ("BACKGROUND",(0,1),(-1,-1),HexColor("#0D1B2A")),
+        ("GRID",(0,0),(-1,-1),0.3,HexColor("#1E3A5F")),
+        ("TOPPADDING",(0,0),(-1,-1),4),("BOTTOMPADDING",(0,0),(-1,-1),4),
+        ("LEFTPADDING",(0,0),(-1,-1),9)])
+    s.append(Table(td,colWidths=[u/2,u/2],style=ts)); s.append(PageBreak())
+    s+=[PartDiv(u,"PART 1  --  CURRENT AFFAIRS  |  21-27 JUNE 2026"),Spacer(1,6)]
+
+    # ══ 01 NATIONAL ══
+    s+=sec("01","NATIONAL")
+
+    s+=nh("India's First 'Easy Connect' Flight Launched from Varanasi","25 Jun")
+    s+=[b("Civil Aviation Minister <b>K. Rammohan Naidu</b> launched India's first '<b>Easy Connect</b>' flight from Varanasi on June 25, 2026."),
+        b("Operated by <b>Air India</b> under Hub and Spoke Model | Flight: <b>AI1111</b> (Varanasi-Delhi daily)."),
+        b("Passengers from Tier-2/3 cities complete immigration formalities at origin airport -- transit through Delhi as international passengers without re-check."),
+        b("International Connectivity: 17 destinations within 4 hours from Delhi -- London, Frankfurt, Milan, Singapore, Dubai, Riyadh, Manila, etc."),
+        b("6 more cities to get Hub and Spoke model in next six weeks | Air India CEO: <b>Campbell Wilson</b> | Owned by Tata Group since January 2022."),
+        Spacer(1,4)]
+
+    s+=nh("APEDA Concludes 1st Cohort of 'BHARATI' Startup Initiative","25 Jun")
+    s+=[b("APEDA = <b>Agricultural & Processed Food Products Export Development Authority</b> | BHARATI = <b>Bharat's Hub for Agritech, Resilience, Advancement and Incubation for Export Innovation</b>."),
+        b("Cohort 1: 100 startups from <b>22 states and 2 UTs</b> | 120-hour structured export acceleration | Top 8 startups at <b>Gulfood 2026 in Dubai</b>."),
+        b("APEDA Export Target: <b>$50 Billion USD</b> by 2030 | Chairman: <b>Abhishek Dev</b> | Under Commerce Ministry."),
+        Spacer(1,4)]
+
+    s+=nh("11th BRICS Energy Ministers' Meeting -- India Hosts in Gurugram","25 Jun")
+    s+=[b("India hosted the <b>11th BRICS Energy Ministers' Meeting</b> (June 25-26, 2026) in <b>Gurugram, Haryana</b> under India's <b>BRICS Chairship 2026</b>."),
+        b("Energy Track Theme: '<b>Energy for All</b>' | BRICS Chairship 2026 Theme: 'Building for Resilience, Innovation, Cooperation and Sustainability (BRICS)'."),
+        b("India's Energy Storage Target: <b>410 GWh</b> by 2032 | Solar expanded 50x in last decade | 60 million+ smart meters | 20% ethanol blending achieved | E85 fuel launched."),
+        b("BRICS Members (11): Brazil, Russia, India, China, South Africa, Egypt, Ethiopia, Iran, UAE, Indonesia, Saudi Arabia | India's Union Minister for Power: <b>Manohar Lal</b>."),
+        Spacer(1,4)]
+
+    s+=nh("C-DOT and IIT Hyderabad: 4th Centre of Excellence in Advanced Communication","25 Jun")
+    s+=[b("C-DOT (Centre for Development of Telematics) signed MoU with <b>IIT Hyderabad</b> for CoE in Advanced Communication Technologies."),
+        b("Focus: <b>5G Advanced/6G</b>, AI-enabled networks, Quantum Communication, Cybersecurity, Post-Quantum Cryptography."),
+        b("C-DOT's <b>4th Centre of Excellence</b> | Previous CoEs: IIT Kanpur, IIT Gandhinagar, IIT Roorkee."),
+        b("C-DOT CEO: Dr. Rajkumar Upadhyay | IIT Hyderabad Director: Prof. B.S. Murty | Under DoT, Ministry of Communications: <b>Jyotiraditya Scindia</b>."),
+        Spacer(1,4)]
+
+    s+=nh("8th Youth Co:Lab National Innovation Challenge 2026 -- Winners Announced","25 Jun")
+    s+=[b("Six youth-led startups won | Winners: NavaPrayoga Labs (Grassip), UnBubble, Ecorenowa Solutions | Grants: <b>Rs.3.5 Lakh each</b>."),
+        b("350+ applications from 28 states | 40%+ ventures are women-led | SDG-aligned Themes: Sustainable Textiles, Circular Economy, Sustainable Food Systems."),
+        b("Co-led by <b>UNDP India</b> and <b>Citi Foundation</b> | Implementing Agency: <b>T-Hub Foundation</b>, Hyderabad (world's largest startup hub, 572,000 sq ft)."),
+        Spacer(1,4)]
+
+    s+=nh("NCERT Adds 1975 Emergency Chapter in Class 9 Textbook","26 Jun")
+    s+=[b("NCERT added new chapter on <b>1975 Emergency</b> in Class 9 | Textbook: '<b>Understanding Society: India and Beyond</b>'."),
+        b("First time Emergency taught in Class 9 (previously only Class 12 Political Science) | Aligns with India observing <b>51st anniversary</b> of the 1975 Emergency."),
+        b("NCERT: Autonomous body under Ministry of Education | HQ: New Delhi | Director: Dinesh Prasad Saklani | Education Minister: <b>Dharmendra Pradhan</b>."),
+        Spacer(1,4)]
+
+    s+=nh("DISHA 2.0 Scheme Approved -- Rs.255 Crore for Justice Access (2026-2031)","26 Jun")
+    s+=[b("GoI approved <b>DISHA 2.0</b> | DISHA = <b>Designing Innovative Solutions for Holistic Access to Justice</b> | Period: April 1, 2026 to March 31, 2031."),
+        b("Outlay: <b>Rs.255 Crore</b> (100% Central) | Target: <b>3 crore beneficiaries</b> | Co-terminus with <b>16th Finance Commission</b> (Chairman: Dr. Arvind Panagariya)."),
+        b("4 Components: (1) <b>Tele-Law</b> (pre-litigation legal advice via CSCs) | (2) <b>Nyaya Bandhu</b> (pro-bono legal services) | (3) <b>LLLAP</b> (legal literacy) | (4) <b>Vidhi Sanjeevani</b> NEW -- centralized digital dashboard with AI chatbot 'Nyaya Setu' (Bhashini-powered)."),
+        b("Nodal Dept: Department of Justice, Ministry of Law | Minister: <b>Arjun Ram Meghwal</b> | Constitutional Mandate: Article 14, 21, 39A."),
+        Spacer(1,4)]
+
+    s+=nh("56th OAS General Assembly Held in Panama -- India Participates","26 Jun")
+    s+=[b("<b>56th General Assembly of the OAS</b> (Organization of American States) held June 22-24, 2026 at ATLAPA Convention Centre, <b>Panama City, Panama</b>."),
+        b("India participated as <b>Permanent Observer</b> (represented by Ambassador Sumit Seth) | Theme: 'The Americas United on the Bicentennial of the Amphictyonic Congress of Panama'."),
+        b("OAS: Established 1948 | HQ: Washington D.C. | Members: 35 (all independent states of the Americas) | Secretary-General: <b>Albert Ramdin</b> (Suriname, since March 2025)."),
+        b("Amphictyonic Congress of Panama (1826): Convened by Simon Bolivar -- forerunner of Pan-American cooperation and OAS."),
+        Spacer(1,4)]
+
+    # NEW ITEM 1: ADB Schoolnet India
+    s+=nh("ADB Provides $10 Million Loan to Schoolnet India for Digital Education","21-22 Jun")
+    s+=[b("ADB (Asian Development Bank) signed a <b>$10 million financing agreement</b> with <b>Schoolnet India Limited</b>."),
+        b("Objective: Upgrade digital learning and educational infrastructure in government schools across India."),
+        b("Schoolnet India: India's leading EdTech company working on digital classroom infrastructure | Operates across government schools in multiple states."),
+        b("India's Digital Education Ecosystem: PM eVidya | DIKSHA portal | National Digital Education Architecture (NDEAR) | One Nation One Digital Infrastructure for Education."),
+        b("ADB: Est. 1966 | HQ: Manila, Philippines | President: <b>Masato Kanda</b> (11th President, Japan, since Feb 24, 2025) | Members: 69 (50 from Asia-Pacific)."),
+        Spacer(1,4)]
+
+    # NEW ITEM 2: COAS Honours Bhattacharya
+    s+=nh("COAS General Upendra Dwivedi Honours Col. Dibya Shankar Bhattacharya","26 Jun")
+    s+=[b("COAS <b>General Upendra Dwivedi</b> honoured <b>Col. Dibya Shankar Bhattacharya (Retd.)</b> with the <b>COAS Commendation Card and Medal</b> at Tezpur, Assam."),
+        b("<b>Incoming COAS (effective June 30, 2026)</b>: Lieutenant General <b>Dhiraj Seth</b> (currently VCOAS, from Armoured Corps, 2nd Lancers)."),
+        b("Tezpur: Sonitpur district, Assam | 'Cultural Capital of Assam' | Tezpur University (Central University) | Assam CM: <b>Himanta Biswa Sarma</b>."),
+        Spacer(1,4)]
+
+    # NEW ITEM 3: BharatBenz Vehicle Replacement
+    s+=nh("BharatBenz Joins Delhi-NCR Old Vehicle Replacement Scheme -- MoRTH MoU","26 Jun")
+    s+=[b("MoRTH signed MoU with <b>Daimler India Commercial Vehicles (BharatBenz)</b> to join old vehicle replacement scheme in Delhi-NCR."),
+        b("Other participants: Ashok Leyland, Switch Mobility, Tata Motors, Mahindra and Mahindra, SML Isuzu."),
+        b("BharatBenz / DICV: Indian subsidiary of <b>Daimler Truck AG</b> (Germany) | Plant: Oragadam, near Chennai."),
+        b("Vehicle Scrappage Policy (2021): Commercial vehicles >15 years + private >20 years = end-of-life | Replaced with BS-VI or EV."),
+        b("MoRTH: Ministry of Road Transport and Highways | Minister: <b>Nitin Gadkari</b>."),
+        Spacer(1,5)]
+
+    # ══ 02 INTERNATIONAL ══
+    s+=sec("02","INTERNATIONAL")
+
+    s+=nh("Colombia Elects New President -- Abelardo de la Espriella","23 Jun")
+    s+=[b("<b>Abelardo de la Espriella</b> won Colombia's presidential runoff -- next President of Colombia."),
+        b("Nickname: '<b>El Tigre</b>' | Right-wing lawyer | Trump-endorsed | Succeeds Gustavo Petro (Colombia's first left-wing President, since 2022)."),
+        b("Election: First round May 31, 2026 | Runoff result declared June 21, 2026."),
+        b("Colombia: Capital: Bogota | Currency: Colombian Peso | Borders: Venezuela, Brazil, Peru, Ecuador, Panama | Coastlines: Pacific + Caribbean."),
+        Spacer(1,4)]
+
+    s+=nh("UK PM Keir Starmer Resigns as Labour Party Leader","23 Jun")
+    s+=[b("<b>Keir Starmer</b> announced his resignation as Prime Minister of the UK and leader of the Labour Party on June 22, 2026."),
+        b("Britain will see its <b>7th Prime Minister in a decade</b> | Mounting electoral pressure triggered Labour leadership crisis (May 2026)."),
+        b("Successor Race: <b>Andy Burnham</b> (Greater Manchester Mayor) has won key endorsement in leadership race."),
+        b("UK: Capital: London | Currency: Pound Sterling (GBP) | Monarch: King Charles III | Parliament: Westminster (House of Commons and House of Lords)."),
+        Spacer(1,4)]
+
+    s+=nh("16th India-Japan Annual Summit 2026 -- PM Sanae Takaichi to Visit India","27 Jun")
+    s+=[b("Japan's PM <b>Sanae Takaichi</b> will visit India July 1-3, 2026 -- her first official visit since assuming office (October 2025)."),
+        b("Both leaders will attend the <b>16th India-Japan Annual Summit</b> in New Delhi | A delegation of 50 Japanese business leaders including executives from Suzuki, Itochu, Toyota Tsusho."),
+        b("Japan: Capital: Tokyo | Currency: Japanese Yen | PM (2026): Sanae Takaichi (Japan's <b>first woman PM</b>, LDP party) | Emperor: Naruhito."),
+        b("India-Japan: Elevated to <b>Special Strategic and Global Partnership</b> in 2014 | Key investments: DMIC, Mumbai-Ahmedabad Bullet Train, Semiconductors."),
+        Spacer(1,4)]
+
+    s+=nh("BRICS National Security Advisers Meeting Hosted in New Delhi","23 Jun")
+    s+=[b("India hosted the <b>BRICS NSA Meeting</b> in New Delhi on June 22-23, 2026."),
+        b("Chaired by <b>Ajit Doval</b>, India's National Security Adviser | Focus: West Asia tensions, terrorism, digital threats, multilateral institution reform."),
+        Spacer(1,5)]
+
+    # ══ 03 BANKING & FINANCE ══
+    s+=sec("03","BANKING & FINANCE")
+
+    s+=nh("PFC Raises $300 Million via Dollar Bonds -- First NBFC/CPSU to Use RBI Subsidized Hedging","24 Jun")
+    s+=[b("<b>PFC (Power Finance Corporation)</b> raised <b>$300 Million USD</b> via 5-year Dollar Bond (priced June 22, 2026)."),
+        b("Historic First: PFC = <b>first NBFC and first CPSU</b> to utilize <b>RBI's Subsidized Hedging Facility</b> for overseas borrowing."),
+        b("Rate: US Treasury 4.27% + 105 bps = 5.32% (vs domestic ~9%) | PFC: Est. 1986 | Navratna CPSE | Under Ministry of Power."),
+        b("GMTN (Global Medium Term Note Programme): Pre-approved framework allowing multiple bond issuances in different currencies without separate approvals."),
+        Spacer(1,4)]
+
+    s+=nh("Government to Divest Stake in IRFC -- Up to 2% via OFS","24 Jun")
+    s+=[b("GoI announced sale of <b>up to 2% stake</b> in <b>IRFC (Indian Railway Finance Corporation)</b> via OFS mechanism."),
+        b("Structure: Base 1% + <b>Greenshoe Option</b> for additional 1% | Nodal Dept: DIPAM."),
+        b("Union Budget 2026-27 disinvestment + asset monetisation target: <b>Rs.80,000 crore</b> | IRFC: Navratna CPSE | Ministry of Railways."),
+        Spacer(1,4)]
+
+    s+=nh("Meta Invests $900 Million in Indian Fintech CRED -- Kunal Shah to Lead WhatsApp","23 Jun")
+    s+=[b("Meta Platforms investing <b>$900 Million USD</b> (~Rs.8,550 Crore) in Indian fintech <b>CRED</b>."),
+        b("CRED's valuation surged to <b>$4.5 Billion USD</b> | <b>Kunal Shah</b> (CRED founder) appointed as <b>Global Head of WhatsApp</b> | Succeeds Will Cathcart (7 years)."),
+        b("CRED Successor: <b>Miten Sampat</b> named interim CEO | CRED: Founded 2018 | HQ: Bengaluru."),
+        Spacer(1,4)]
+
+    s+=nh("India Becomes World's #1 Ship Recycling Nation -- UNCTAD Report","23 Jun")
+    s+=[b("India = <b>Global No.1 Ship Recycling Nation</b> (UNCTAD report) | Achieved in 2025 -- <b>5 years ahead</b> of Maritime India Vision 2030 schedule."),
+        b("Market Share: <b>35.4%</b> in 2025 (up from 30.1% in 2024) | Volume: <b>2.99 million gross tons</b> (vs 1.86 million in 2024 -- ~60% jump)."),
+        Spacer(1,4)]
+
+    s+=nh("Tushar Mehta Re-appointed as Solicitor General of India -- 3-Year Term","23 Jun")
+    s+=[b("<b>Tushar Mehta</b> re-appointed as Solicitor General of India | Term: 3 years from July 1, 2026 | 5 ASGs also re-appointed."),
+        b("Law Officers Hierarchy: Attorney General -> Solicitor General -> Additional Solicitors General."),
+        b("First SG: <b>C.K. Daphtary</b> (1950-52) | AG: <b>R. Venkataramani</b> (16th AG, since Oct 1, 2022) | Appointed under <b>Article 76</b>."),
+        Spacer(1,4)]
+
+    s+=nh("GMR Airports Takes Over Nagpur Airport -- 30-Year Concession","27 Jun")
+    s+=[b("<b>GMR Airports Limited</b> officially took over <b>Dr. Babasaheb Ambedkar International Airport</b>, Nagpur via subsidiary GMR Nagpur International Airport Ltd."),
+        b("<b>30-year concession agreement</b> with MIHAN India Ltd (Multi-modal International Cargo Hub and Airport at Nagpur -- Maharashtra govt SPV)."),
+        b("GMR Airports: Part of GMR Group | Operates: IGIA Delhi, RGIA Hyderabad, Goa Mopa, Bidar Airport."),
+        Spacer(1,4)]
+
+    # NEW ITEM 4: Skydo Canada License
+    s+=nh("Skydo Secures International Payment License in Canada -- First Indian Cross-Border Platform Licensed Overseas","24 Jun")
+    s+=[b("<b>Skydo</b>, Bengaluru-based Fintech startup, secured an <b>International Payment License in Canada</b> -- first Indian cross-border payments platform licensed overseas."),
+        b("Licensed under Canada's <b>Retail Payment Activities Act (RPAA)</b> overseen by the <b>Bank of Canada</b>."),
+        b("Skydo is also approved from India's <b>GIFT City</b> as a Payment Service Provider (PSP) | Serves 40,000+ Indian businesses | ~$1 billion annualised transaction volume."),
+        b("India-Canada Bilateral Trade: ~CAD 13.6 billion | Target: <b>CAD 70 billion by 2030</b>."),
+        b("GIFT City: Gujarat International Finance Tec-City | India's first operational International Financial Services Centre (IFSC) | Gandhinagar, Gujarat."),
+        Spacer(1,4)]
+
+    s+=nh("EPF Interest Rate 8.25% | RBI CRR/SLR Exemption on NRE/FCNR Deposits","ref")
+    s+=[b("EPF interest rate ratified at <b>8.25%</b> for FY 2025-26 | RBI CRR (3%) and SLR (18%) exempted on fresh NRE and FCNR(B) deposits (June-Sept 2026) to attract NRI inflows."),
+        Spacer(1,5)]
+
+    # ══ 04 ECONOMY & BUSINESS ══
+    s+=sec("04","ECONOMY & BUSINESS")
+
+    s+=nh("Goldman Sachs Upgrades India's GDP to 6.8% for CY2026","27 Jun")
+    s+=[b("Goldman Sachs upgraded India's real GDP growth forecast for CY 2026 to <b>6.8%</b> (from 6.5%) | Trigger: <b>US-Iran peace deal</b> led to fall in crude oil prices."),
+        b("FY27 GDP forecast upgraded by 40 bps to <b>6.5%</b> | NSO: India's FY26 real GDP: 7.7%, nominal: 8.9% | Q4 (Jan-Mar 2026): real 7.8%, nominal 9.1%."),
+        b("New GDP Base Year: Updated to <b>2022-23</b> (previously 2011-12) | Goldman Sachs: Founded 1869 | HQ: New York | CEO: <b>David Solomon</b>."),
+        Spacer(1,4)]
+
+    s+=nh("IRCTC Launches 'Divine East Temple Tour' -- 11-Day Rail Pilgrimage","27 Jun")
+    s+=[b("IRCTC announced the <b>Divine East Temple Tour</b> -- 11-day rail-based pilgrimage starting September 25, 2026 from <b>Safdarjung Railway Station, New Delhi</b> aboard the <b>Bharat Gaurav Deluxe Tourist Train</b>."),
+        b("Destinations: Varanasi (Kashi Vishwanath) | Puri (Jagannath Temple) | Konark (Sun Temple) | Bhubaneswar | Kolkata (Ganga Sagar) | Baidyanath Dham."),
+        b("IRCTC: Miniratna Category-I CPSE | Under Ministry of Railways | CMD: Sanjay Kumar Jain | Railways Minister: <b>Ashwini Vaishnaw</b>."),
+        Spacer(1,4)]
+
+    s+=nh("India's ISP (Index of Services Production) Introduced by MoSPI","25 Jun")
+    s+=[b("MoSPI introduced new monthly economic indicator: <b>Index of Services Production (ISP)</b> -- services equivalent of IIP."),
+        b("Base Year: 2024-25 | First release: Trial monthly indices for 2025-26 (April 2026 data) on <b>14th July 2026</b> | Regular monthly indices on 29th of every month (~60 days lag)."),
+        b("Services sector = >50% of India's GVA | Data sources: Administrative data (Railways, Air, Banking), GST outward supply data, ASISSE."),
+        b("Committee chaired by <b>Ms. Debjani Ghosh</b>, Distinguished Fellow, NITI Aayog."),
+        b("NITI Aayog CEO (CORRECTED): <b>Nidhi Chhibber</b> (Additional Charge, since Feb 26, 2026) | Succeeds B.V.R. Subrahmanyam who became Finance Secretary | Chairperson: PM Narendra Modi | Vice Chairman: <b>Ashok Lahiri</b>."),
+        b("MoSPI: Ministry of Statistics and Programme Implementation | Minister: <b>Rao Inderjit Singh</b> (MoS I/C)."),
+        Spacer(1,4)]
+
+    s+=nh("BHIM App Transformed into Financial Super App","25 Jun")
+    s+=[b("BHIM (Bharat Interface for Money) app being transformed into a comprehensive <b>Financial Super App</b>."),
+        b("New Services: Credit cards, personal loans, mutual funds, insurance, pension -- all under one roof | BHIM now allows users to check <b>CIBIL credit score</b> directly (NPCI BHIM Services Ltd -- TransUnion CIBIL tie-up)."),
+        b("UPI Market (May 2026): PhonePe (46.2%) + Google Pay (32.7%) = ~79% share | NPCI 30% market cap rule: effective <b>December 2026</b>."),
+        b("NPCI: MD and CEO: <b>Dilip Asbe</b> | 4 Subsidiaries: NIPL, NBBL (BBPS), NBSL (BHIM), NTSL."),
+        Spacer(1,4)]
+
+    s+=nh("WEF Energy Transition Index 2026 -- India Ranks 70th","21-22 Jun")
+    s+=[b("India secured <b>70th rank</b> (score: 54.9) in WEF Energy Transition Index 2026 | 1.9% improvement from previous year."),
+        b("Top 5: <b>Sweden | Finland | Denmark | Estonia | Norway</b> | Bottom: Democratic Republic of Congo."),
+        b("PM Surya Ghar Muft Bijli Yojana (Rs.78,000 central subsidy for rooftop solar) highlighted as key driver."),
+        Spacer(1,4)]
+
+    # NEW ITEM 5: Amazon $13B Investment
+    s+=nh("Amazon Announces $13 Billion Additional Investment in India's AI and Cloud","26 Jun")
+    s+=[b("<b>Amazon</b> announced additional <b>$13 Billion USD</b> investment in AI and cloud infrastructure in India (2026-2030)."),
+        b("Total planned India investment increases from $35B to <b>$48 billion by 2030</b> | AI and cloud investment alone: $21+ billion."),
+        b("Announced during <b>Amazon CEO Andy Jassy's</b> visit to New Delhi and meeting with PM Narendra Modi."),
+        b("Amazon aims: <b>3.8 million jobs</b> + <b>$80 billion e-commerce exports</b> from India by 2030 | Cumulative 2010-2030: $88 billion+."),
+        b("Amazon India CEO: <b>Samir Kumar</b> | AWS data centres: Mumbai and Hyderabad | Amazon: Founded 1994 | Global CEO: <b>Andy Jassy</b>."),
+        Spacer(1,5)]
+
+    # ══ 05 DEFENCE & SECURITY ══
+    s+=sec("05","DEFENCE & SECURITY")
+
+    s+=nh("NETRA Surveillance Platform Receives Final Operational Clearance","26 Jun")
+    s+=[b("India's indigenous AEW&CS <b>NETRA</b> received <b>Final Operational Clearance (FOC)</b> on June 25, 2026."),
+        b("FOC declared by Air Marshal <b>Awadhesh Kumar Bharti</b>, DCAS, at CABS, DRDO, Bengaluru."),
+        b("NETRA: Sanskrit for 'Eye' | Flying radar | <b>270 degree radar coverage</b> | Mounted on <b>Embraer EMB 145 (EMB-145I)</b> | 3 NETRA aircraft at Bhisiana AFB, Punjab (No. 200 Squadron, IAF)."),
+        b("IOC vs FOC: IOC = limited use | FOC = fully combat-ready for unrestricted deployment."),
+        b("NETRA MK-2: Next-gen on 6 Airbus A321 aircraft (Rs.19,000 crore | CCS approved July 2025) | 300-360 degree coverage."),
+        Spacer(1,4)]
+
+    s+=nh("USA Approves $198.2 Million Maintenance Package for India's Apache Helicopters","26 Jun")
+    s+=[b("USA approved <b>$198.2 million maintenance and sustainment package</b> for India's <b>AH-64E Apache Guardian</b> attack helicopters."),
+        b("Principal Contractors: Boeing and Lockheed Martin | Part of broader <b>$428.2 million US-India defence sustainment package</b> (also includes $230M for M777A2 Howitzers)."),
+        b("India operates <b>28 Apache helicopters</b> (22 with Air Force, 6 with Army) | India-US: Major Defence Partner since 2016 | LEMOA (2016), COMCASA (2018), BECA (2020)."),
+        Spacer(1,4)]
+
+    s+=nh("IIT Ropar Secures Rs.120 Crore Defence Technology Projects","24 Jun")
+    s+=[b("<b>IIT Ropar</b> (Rupnagar, Punjab) awarded two defence technology projects by <b>27th Army Technology Board (ATB)</b> | Total: <b>Rs.120 Crore</b>."),
+        b("Tech 1: <b>Autonomous Armed Vehicles</b> (AI-based navigation and threat detection) | Tech 2: <b>Directed Energy Weapons (DEW)</b> (anti-drone, missile defence, electronic warfare)."),
+        b("Projects under <b>Atmanirbhar Bharat</b> | IIT Ropar Director: Prof. Rajeev Ahuja | Punjab CM: Bhagwant Mann."),
+        Spacer(1,4)]
+
+    s+=nh("INS Dunagiri Commissioned -- 5th Ship of Project 17A, Built by GRSE Kolkata","21-22 Jun")
+    s+=[b("PM Modi commissioned <b>INS Dunagiri</b> -- 5th ship out of 7 under <b>Project 17A</b> (advanced stealth frigates)."),
+        b("Built by: <b>GRSE (Garden Reach Shipbuilders and Engineers) Limited, Kolkata</b> -- recently elevated to Navratna CPSE."),
+        b("Project 17A: 4 from Mazagon Dockyard, Mumbai + 3 from GRSE, Kolkata | INS Dunagiri: Named after Dunagiri Peak, Uttarakhand (6,939m)."),
+        Spacer(1,4)]
+
+    s+=nh("DAE Commissions World's First Nuclear-Based Hydrogen Production Facility","27 Jun")
+    s+=[b("DAE inaugurated world's first <b>Hydrogen Production Facility based on Cu-Cl Thermochemical Cycle</b> at <b>IGCAR, Kalpakkam, Tamil Nadu</b> (June 26, 2026)."),
+        b("Uses nuclear process heat from <b>FBTR (Fast Breeder Test Reactor)</b> | Inaugurated by <b>Dr. Ajit Kumar Mohanty</b>, Secretary DAE and Chairman AEC."),
+        b("Cu-Cl process developed by <b>BARC (Bhabha Atomic Research Centre)</b>, Trombay, Mumbai | India's 3-Stage Nuclear Programme: PHWRs -> FBRs -> Thorium."),
+        Spacer(1,4)]
+
+    s+=nh("US Approves $230M Sustainment Package for India's M777A2 Howitzers","24 Jun")
+    s+=[b("USA announced <b>$230 Million USD contract</b> for long-term sustainment support of India's <b>M777A2 Ultra-Light Howitzers</b>."),
+        b("Announced by US Ambassador <b>Sergio Gor</b> | Notified by DSCA on June 17, 2026 | M777A2: 155mm towed artillery gun | Assembled by Mahindra Defence (120 units)."),
+        Spacer(1,4)]
+
+    # NEW ITEM 6: INS Udaygiri & Kavaratti Vietnam Visit
+    s+=nh("INS Udaygiri and INS Kavaratti Visit Vietnam -- BrahMos Deal Backdrop","24 Jun")
+    s+=[b("<b>INS Udaygiri</b> (stealth frigate) and <b>INS Kavaratti</b> (ASW corvette) arrived at <b>Nha Rong Port, Ho Chi Minh City, Vietnam</b> (June 22-24, 2026)."),
+        b("Led by <b>Rear Admiral Alok Ananda</b>, Flag Officer Commanding Eastern Fleet."),
+        b("First major naval presence in Vietnam since bilateral relationship elevated to <b>Enhanced Comprehensive Strategic Partnership</b> (May 2026)."),
+        b("India-Vietnam Bilateral Trade Target: <b>$25 Billion USD by 2030</b>."),
+        b("<b>BrahMos Missile Deal</b>: India to supply BrahMos supersonic cruise missiles to Vietnam (~$629 million | Shangri-La Dialogue, May 2026) | Vietnam = <b>2nd BrahMos export customer</b> after Philippines."),
+        b("BrahMos: Speed Mach 2.8-3.0 | Range 450-600 km | DRDO (India) + NPO Mashinostroyeniya (Russia) JV."),
+        b("Vietnam: Capital: Hanoi | Currency: Vietnamese Dong | President: <b>To Lam</b> (also Communist Party General Secretary, elected April 7, 2026)."),
+        Spacer(1,4)]
+
+    # NEW ITEM 7: Operation Amistad
+    s+=nh("India Launches 'Operation Amistad' -- Humanitarian Aid to Earthquake-Hit Venezuela","27 Jun")
+    s+=[b("India launched <b>Operation Amistad</b> (Spanish: 'Friendship') to provide urgent humanitarian assistance to earthquake-hit Venezuela."),
+        b("IAF dispatched <b>two C-17 Globemaster aircraft</b> from <b>Hindon Air Force Station</b> carrying critical relief materials."),
+        b("Deployed <b>41-member Indian Army medical contingent</b> from <b>60 Para Field Hospital</b> (9 medical officers: trauma, surgery, critical care)."),
+        b("Carried <b>35+ tonnes</b> of relief supplies including <b>two BHISHM Cube</b> portable hospitals."),
+        b("Venezuela: Twin earthquakes of <b>7.5 and 7.2 magnitude</b> (June 24-25, 2026) | Capital: Caracas | Interim President: Delcy Rodriguez."),
+        b("<b>BHISHM Cube</b> (Bharat Health Initiative for Sahyog Hita and Maitri): Deployable within <b>12 minutes</b> | ICU, OT, X-ray, pharmacy and lab."),
+        b("India's HADR Track Record: Operation Dost (Turkey 2023) | Operation Karuna (Myanmar 2023) | Operation Ajay (Israel 2023) | Operation Sadbhav (Libya 2023) | <b>Operation Amistad</b> (Venezuela 2026)."),
+        b("<b>Vasudhaiva Kutumbakam</b>: 'The World is One Family' -- India's guiding principle for HADR missions."),
+        Spacer(1,4)]
+
+    s+=nh("India Joins US-Led 'Pax Silica' AI Initiative -- 35 Nations","27 Jun")
+    s+=[b("India joined 34 other nations (total <b>35 nations</b>) in US-led '<b>Pax Silica</b>' initiative at 2nd Pax Silica Summit, Washington D.C."),
+        b("Pax Silica: Name = Latin for 'Silicon Peace' | Aims to establish resilient AI supply chain -- preventing bottlenecks in semiconductors, data centres, critical minerals."),
+        b("India represented by <b>S. Krishnan</b>, Secretary MeitY | India joined Pax Silica: February 2026 (India AI Impact Summit, New Delhi)."),
+        b("Founding members (Dec 2025): USA, Australia, Israel, Japan, Singapore, South Korea, UK | China controls ~60% of rare earth minerals -- primary concern."),
+        Spacer(1,5)]
+
+    # ══ 06 APPOINTMENTS ══
+    s+=sec("06","APPOINTMENTS")
+    s.append(mktbl(
+        ["Name","Appointment","Date","Key Detail"],
+        [["Mahesh Dixit","Director, Intelligence Bureau (IB)","26 Jun","1993-batch IPS, AP cadre | Replaces Tapan Kumar Deka (term ends June 30, 2026)"],
+         ["Prabhjeet Singh","First Managing Director, OpenAI India","27 Jun","Former President, Uber India and South Asia (11 yrs) | Assumes Sept 2026 | Reports to Kiran Mani (APAC MD)"],
+         ["Nidhi Chhibber","CEO (Additional Charge), NITI Aayog","Feb 26, 2026","1994-batch IAS, Chhattisgarh cadre | Succeeds B.V.R. Subrahmanyam (became Finance Secretary) | Previously DG, DMEO"],
+         ["Dr. Saibal Chattopadhyay","Chairperson, National Statistical Commission","21-22 Jun","Former Director, IIM Kolkata | 3 part-time members also appointed"],
+         ["Dr. Bimal N. Patel","Judge, ITLOS (2026-2035)","21-22 Jun","DG, MP-IDSA | Former VC, Gujarat National Law University | Replaces Neeru Chadha"],
+         ["Abelardo de la Espriella","President-elect, Colombia","23 Jun","Right-wing lawyer | Trump-endorsed | Nickname 'El Tigre' | Succeeds Gustavo Petro"],
+         ["Tushar Mehta","Solicitor General of India (re-appointed)","23 Jun","3-year term from July 1, 2026 | 5 ASGs also re-appointed"],
+         ["Lt Gen Dhiraj Seth","31st Chief of Army Staff (COAS) -- eff. June 30","26 Jun","Currently VCOAS | Armoured Corps (2nd Lancers)"],
+         ["T.V. Somanathan","Heads Search Committee for National Sports Board","21-22 Jun","Cabinet Secretary | 1987-batch IAS, Tamil Nadu cadre"],
+         ["Neelkanth Mishra","Executive Director at World Bank (India's ED)","24 Jun","Appointed June 4, 2026 | 3-year term | Former Chief Economist, Axis Bank | IIT Kanpur alumnus"]],
+        [0.20,0.24,0.09,0.47]))
+    s.append(Spacer(1,6))
+
+    # ══ 07 AWARDS & HONOURS ══
+    s+=sec("07","AWARDS & HONOURS (incl. Books)")
+
+    s+=nh("Viswanathan Anand Honored with SJFI Medal 2024","25 Jun")
+    s+=[b("Five-time World Chess Champion <b>Viswanathan Anand</b> honored with <b>SJFI Medal 2024</b> at Chennai on June 24, 2026."),
+        b("SJFI = Sports Journalists' Federation of India | Chief Guest and Presenter: <b>Krishnamachari Srikkanth</b> (1983 WC winning captain)."),
+        b("Anand: Born Dec 11, 1969 | Mayiladuthurai, TN | India's first Grandmaster (1988) | 5-time World Champion | <b>Deputy President of FIDE</b> (elected 2022)."),
+        b("FIDE: International Chess Federation | HQ: Lausanne, Switzerland | President: <b>Arkady Dvorkovich</b> (Russia)."),
+        Spacer(1,4)]
+
+    s+=nh("Piyush Goyal Honored at UK-India Awards 2026 | India-UK CETA","27 Jun")
+    s+=[b("Union Minister <b>Piyush Goyal</b> received Special Award at <b>UK-India Awards 2026</b> in London for elevating UK-India strategic and economic relations."),
+        b("India-UK <b>CETA (Comprehensive Economic and Trade Agreement)</b>: Comes into effect <b>July 15, 2026</b> | Signed July 24, 2025 after 14 rounds over 3 years."),
+        b("CETA Key Benefits: UK eliminates duties on 99% of Indian tariff lines | <b>20,000 annual UK service visas</b> for Indian professionals | Scotch whisky tariffs: 150% -> 40%."),
+        b("<b>DCC (Double Contribution Convention)</b>: Alongside CETA from July 15, 2026 | Indian IT professionals on UK assignments exempt from double social security for up to <b>5 years</b>."),
+        Spacer(1,4)]
+
+    s+=nh("Book: 'VIP Culture in India: Power, Privilege and the Distance from Democracy'","25 Jun")
+    s+=[b("Released by: <b>VP C.P. Radhakrishnan</b> | Authored by: <b>Nabam Rebia</b> (Rajya Sabha MP, former Speaker, Arunachal Pradesh LA) and Sandeep Kumar."),
+        b("VP C.P. Radhakrishnan: 15th VP of India | Assumed office September 12, 2025 | Ex-officio Chairman of Rajya Sabha."),
+        Spacer(1,4)]
+
+    s+=nh("Book: 'Sanskriti Ratna Bhandar Bhavaiyar Itibritto' -- Cultural Book on Bhavaiya Folk Music","27 Jun")
+    s+=[b("VP <b>C.P. Radhakrishnan</b> released cultural book on <b>Bhavaiya</b> folk music of Assam, North Bengal, and Koch Rajbongshi community."),
+        b("Co-authored by Dr. Jayanta Kumar Roy and Sangita Roy | Instruments: dotara (string), dhak (drum), sarinda."),
+        Spacer(1,4)]
+
+    s+=nh("Book: 'IIT: The Story of India's Most Prestigious Educational Ecosystem'","21-22 Jun")
+    s+=[b("Released By: Lok Sabha Speaker <b>Om Birla</b> (BJP, Kota-Bundi, Rajasthan) | Chronicles evolution from first IIT Kharagpur (1951) to <b>23 IITs</b> nationwide."),
+        Spacer(1,5)]
+
+    # ══ 08 SPORTS ══
+    s+=sec("08","SPORTS")
+
+    s+=nh("India Wins FIH Women's Nations Cup 2026 -- 2nd Title","21-22 Jun")
+    s+=[b("India defeated New Zealand in Auckland to win <b>FIH Women's Nations Cup 2026</b> | India's <b>2nd title</b> (1st: 2023, Spain) | Win secured promotion to <b>FIH Women's Pro League</b>."),
+        b("Player of the Match (Final): <b>Lalremsiami</b> | Joint Top Scorers: Deepika and Eslie Sesa -- 6 goals each."),
+        b("FIH: International Hockey Federation | HQ: Lausanne, Switzerland | CEO: Thierry Weil."),
+        Spacer(1,4)]
+
+    s+=nh("Abhay Singh and Velavan Senthilkumar Win 3rd Asian Doubles Squash Championship","21-22 Jun")
+    s+=[b("Indian duo won Men's Doubles at <b>3rd Asian Doubles Squash Championships 2026</b> in Sarawak, Malaysia -- becoming <b>3-time consecutive champions</b>."),
+        b("Runners-Up: Nasir Iqbal and Noor Zaman | Malaysia PM: Anwar Ibrahim."),
+        Spacer(1,4)]
+
+    s+=nh("12th International Day of Yoga 2026 -- June 21 | Theme: 'Yoga for Healthy Aging'","21-22 Jun")
+    s+=[b("12th IDY celebrated June 21, 2026 | Theme: '<b>Yoga for Healthy Aging</b>' | Main national event: <b>Kolkata, West Bengal</b>."),
+        b("GWR: 'Most Viewers for YouTube Live Yoga Stream' -- <b>4,35,831 viewers</b>."),
+        b("History: PM Modi proposed UNGA Sep 27, 2014 | Adopted Dec 11, 2014 (177 nations) | First IDY: June 21, 2015."),
+        Spacer(1,4)]
+
+    s+=nh("Inaugural Indian Athletics Awards 2025 -- Neeraj Chopra and Parul Chaudhary","21-22 Jun")
+    s+=[b("Men's Athlete: <b>Neeraj Chopra</b> (javelin) | Women's Athlete: <b>Parul Chaudhary</b> (3000m Steeplechase and 5000m)."),
+        b("Lifetime Achievement: P.T. Usha | Anju Bobby George | Bahadur Singh Chouhan | G.S. Randhawa."),
+        b("AFI: Athletics Federation of India | Affiliated to World Athletics (WA) | HQ: Monaco."),
+        Spacer(1,4)]
+
+    s+=nh("Vaibhav Suryavanshi Hits Fastest List A Half-Century -- 11 Balls!","23 Jun")
+    s+=[b("15-year-old <b>Vaibhav Suryavanshi</b>: fastest List A fifty in 11 balls | Match: Tri-Nation A Series final vs Sri Lanka A, Dambulla, June 22, 2026."),
+        b("Scorecard: 94 runs off 29 balls (10 fours, 8 sixes) | India A won by 66 runs | Previous record: 12 balls (Kaushalya Weeraratne, 2005)."),
+        b("Suryavanshi: Born March 27, 2011 | Bihar | Rajasthan Royals (IPL) | Earlier youngest IPL centurion (age 14, 2025)."),
+        Spacer(1,4)]
+
+    s+=nh("Marketa Vondrousova Suspended for 4 Years by ITIA","23 Jun")
+    s+=[b("Former Wimbledon champion <b>Marketa Vondrousova</b> (Czech Republic) suspended 4 years by ITIA for refusing mandatory anti-doping test (Dec 2025)."),
+        b("Vondrousova: Won <b>Wimbledon 2023</b> | First unseeded woman in Open Era to win Wimbledon | Czech Republic: Capital: Prague | President: Petr Pavel."),
+        b("WADA: Est. 1999 | HQ: Montreal, Canada | President: Witold Banka."),
+        Spacer(1,4)]
+
+    s+=nh("FIFA Suspends All Nepal Football Association (ANFA)","26 Jun")
+    s+=[b("FIFA suspended <b>ANFA (All Nepal Football Association)</b> from June 24, 2026 for third-party interference by Nepal's National Sports Council in ANFA's electoral processes."),
+        b("Under suspension: Nepal's teams barred from FIFA and AFC competitions | Loses development programmes and financial assistance."),
+        b("AFC: Asian Football Confederation | HQ: Kuala Lumpur | President: Shaikh Salman bin Ebrahim Al Khalifa (Bahrain)."),
+        Spacer(1,5)]
+
+    # ══ 09 SCIENCE & TECHNOLOGY ══
+    s+=sec("09","SCIENCE & TECHNOLOGY")
+
+    s+=nh("World's First Nuclear-Based Hydrogen Production Facility -- Cu-Cl Thermochemical Cycle","27 Jun")
+    s+=[b("World's first <b>Hydrogen Production Facility based on Cu-Cl Thermochemical Cycle</b> commissioned at <b>IGCAR, Kalpakkam</b>."),
+        b("Cu-Cl Process: Uses heat (not electricity) to split H2O into H2 and O2 using copper and chlorine compounds (recycled) -- zero-carbon."),
+        b("Nuclear Hydrogen vs Green Hydrogen: Both zero-carbon | Nuclear uses heat from reactors (higher efficiency) | Green uses electricity from renewables."),
+        Spacer(1,4)]
+
+    s+=nh("NETRA AEW&CS -- Technical Details (Sci-Tech angle)","26 Jun")
+    s+=[b("NETRA AEW&CS -- AESA Radar (Active Electronically Scanned Array) developed by DRDO's LRDE (Electronics and Radar Development Establishment)."),
+        b("AESA Radar: Thousands of transmit/receive modules electronically steer radar beam -- faster, harder to jam, can track multiple targets simultaneously."),
+        Spacer(1,4)]
+
+    # NEW ITEM 8: VOC Port PortGPT
+    s+=nh("VOC Port Deploys India's First Enterprise AI App 'PortGPT' -- Thoothukudi","24 Jun")
+    s+=[b("<b>V.O. Chidambaranar (VOC) Port Authority</b>, Thoothukudi, TN -- launched '<b>PortGPT</b>' -- India's first enterprise-grade Generative AI app in a major port."),
+        b("Launched by Union Minister <b>Sarbananda Sonowal</b> (Ports, Shipping and Waterways)."),
+        b("Purpose: Streamline knowledge management, fast-track information retrieval, data-driven decisions at port."),
+        b("VOC Port: <b>45% reduction</b> in net carbon emissions | Renewable energy offsets ~94% of energy | Recognized as <b>Scope-2 Emission Free Port</b>."),
+        b("VOC Port also signed MoU with <b>Gati Shakti Vishwavidyalaya</b>, Vadodara for sustainable port operations and logistics education."),
+        b("Scope-2 Emissions: Indirect GHG from purchased electricity | Scope-2 Free = all electricity from renewable sources."),
+        Spacer(1,4)]
+
+    s+=nh("India AI Mission: Rs.10,372 Crore | Pax Silica | E85 Fuel","ref")
+    s+=[b("India AI Mission: <b>Rs.10,372 Crore</b> programme for AI compute infrastructure, datasets, and skilling | E20 ethanol blending achieved | <b>E85 fuel</b> launched (80-85% ethanol blend)."),
+        Spacer(1,5)]
+
+    # ══ 10 IMPORTANT DAYS ══
+    s+=sec("10","IMPORTANT DAYS")
+    s.append(mktbl(
+        ["Day / Observance","Date","Theme / Key Fact"],
+        [["12th International Day of Yoga","June 21","Theme: 'Yoga for Healthy Aging' | Proposed PM Modi UNGA Sep 27, 2014 | Adopted Dec 11, 2014 (177 nations) | First: June 21, 2015 | Main event: Kolkata"],
+         ["International Widows Day","June 23","Theme 2026: 'Justice, Dignity and Economic Power for Widows' | UNGA Resolution 65/189 (2010) | Loomba Foundation instrumental"],
+         ["UN Public Service Day","June 23","2026 Forum: Tbilisi, Georgia | Theme: 'Transforming Public Institutions: Advancing Innovation, Participation, and Inclusion' | Est. UNGA 2003"],
+         ["Passport Seva Divas","June 24","Commemorates enactment of the Passports Act on June 24, 1967"],
+         ["International Day of Women in Diplomacy","June 24","Established by UNGA | Notable Indians: Vijaya Lakshmi Pandit (first woman to chair UNGA); Nirupama Rao (first woman MEA spokesperson); Sujatha Singh (first woman Foreign Secretary)"],
+         ["Samvidhan Hatya Diwas","June 25","Remembers victims of National Emergency (June 25, 1975 - March 21, 1977 | 21 months) | Declared by President Fakhruddin Ali Ahmed on advice of PM Indira Gandhi | Article 352"],
+         ["International Day Against Drug Abuse (World Drug Day)","June 26","2026 Theme: 'World drug problem: persisting issues, new challenges, innovative responses' | Est. UNGA 1987 | UNODC HQ: Vienna | Executive Director: Monica Juma (Kenya)"],
+         ["International Day in Support of Victims of Torture","June 26","Est. by UN in 1997 | Marks entry into force of UN Convention Against Torture (1987)"],
+         ["MSME Day","June 27","2026 Theme: 'Human-Centered Entrepreneurship in an AI-Driven Future' | Est. UN 2017 | MSMEs: ~31% India GDP, ~48% exports, 38.9 crore employed, 8.7 crore+ on Udyam portal"]],
+        [0.28,0.09,0.63]))
+    s.append(Spacer(1,6))
+
+    # ══ 11 OBITUARIES ══
+    s+=sec("11","OBITUARIES")
+    s.append(mktbl(
+        ["Personality","Known For","Key Note"],
+        [["Alan Greenspan","Legendary US Federal Reserve Chairman (died at age 100 on June 22, 2026)","Served as Fed Chairman 1987-2006 under 4 Presidents (Reagan, G.H.W. Bush, Clinton, G.W. Bush) | Dubbed 'The Maestro' | Longest-serving Fed Chair at that time (19 years) | Succeeded by Ben Bernanke"],
+         ["Bob Blair","Former New Zealand fast bowler (died at age 94)","One of NZ's earliest fast bowlers | Remembered for the emotional 1954 Christchurch Test -- came to bat after receiving news of his fiancee's death in the Tangiwai railway disaster"]],
+        [0.22,0.26,0.52]))
+    s.append(Spacer(1,6))
+
+    # ══ PART 2 ══
+    s.append(PageBreak())
+    s+=[PartDiv(u,"PART 2  --  COMPLETE STATIC GK & REFERENCE"),Spacer(1,6)]
+
+    # GK1 ORGANIZATIONS
+    s+=sec("GK1","KEY ORGANIZATIONS -- COMPLETE REFERENCE",gk=True)
+    s.append(mktbl(
+        ["Organization","Est.","HQ","Head / Key Detail"],
+        [["RBI","Apr 1, 1935","Mumbai","Governor: Sanjay Malhotra (26th, since Dec 11, 2024) | 4 Dy Govs | Subsidiaries: DICGC, BRBNMPL, ReBIT, IFTAS, RBIH"],
+         ["NPCI","2008","Mumbai","MD & CEO: Dilip Asbe | 4 Subsidiaries: NIPL, NBBL (BBPS), NBSL (BHIM), NTSL | Owns UPI, RuPay, IMPS, FASTag, NACH"],
+         ["NITI Aayog","2015","New Delhi","CEO (Addl. Charge): Nidhi Chhibber (since Feb 26, 2026) | Chairperson: PM Modi | Vice Chairman: Ashok Lahiri | Replaced Planning Commission"],
+         ["FATF","1989 (G7)","Paris, France","40 members | Combats Money Laundering, Terrorist Financing | India VP (Jul 2026): Vivek Aggarwal"],
+         ["UNCTAD","1964","Geneva","Secretary-General: Rebeca Grynspan | India = World No.1 Ship Recycling (35.4%, 2025)"],
+         ["OAS","1948","Washington D.C.","Secretary-General: Albert Ramdin (Suriname, March 2025) | 35 member states | India = Permanent Observer"],
+         ["ITLOS","--","Hamburg, Germany","21 judges | Under UNCLOS (1982) | India's new judge: Dr. Bimal N. Patel (2026-2035)"],
+         ["IB","1887","New Delhi","India's oldest intelligence agency | Under MHA (Amit Shah) | New Director: Mahesh Dixit (1993-batch IPS, AP cadre)"],
+         ["NHAI","1988","New Delhi","Chairman: Santosh Kumar Yadav | Under MoRTH (Nitin Gadkari) | MoU with NCAER for Transport Economics Research Centre"],
+         ["NCAER","1956","New Delhi","National Council of Applied Economic Research | India's oldest and largest independent economic policy research institute"],
+         ["NSC","2005 (op 2006)","--","National Statistical Commission | Under MoSPI | New Chairperson: Dr. Saibal Chattopadhyay | Formed on Rangarajan Commission recommendations"],
+         ["NAFED","1958","New Delhi","National Agricultural Cooperative Marketing Federation of India | Chairman: Jethabhai Ahir | New portal: NAFEX.in"],
+         ["C-DOT","--","New Delhi","Centre for Development of Telematics | Under DoT (Jyotiraditya Scindia) | CEO: Dr. Rajkumar Upadhyay | 4 CoEs (latest: IIT Hyderabad)"],
+         ["APEDA","1986","New Delhi","Agricultural & Processed Food Products Export Development Authority | Chairman: Abhishek Dev | BHARATI Initiative | Export target $50B by 2030"],
+         ["IGCAR","1971","Kalpakkam, TN","Indira Gandhi Centre for Atomic Research | Under DAE | World's first Cu-Cl nuclear hydrogen facility commissioned"],
+         ["BARC","1954","Mumbai","Bhabha Atomic Research Centre | Under DAE | Named after Dr. Homi Jehangir Bhabha | Developed Cu-Cl thermochemical process"],
+         ["WEF","1971","Cologny, Geneva","World Economic Forum | Annual Davos Forum (January) | India: 70th in Energy Transition Index 2026 | Sweden tops"],
+         ["OpenAI","2015","San Francisco, USA","CEO: Sam Altman | First India MD: Prabhjeet Singh (Sept 2026)"],
+         ["FIFA","1904","Zurich, Switzerland","President: Gianni Infantino | Suspended ANFA (Nepal) June 2026 | 211 associations"],
+         ["DRDO (CABS)","1958","New Delhi","Centre for Airborne Systems (CABS, Bengaluru) -- developed NETRA AEW&CS | DRDO Chairman: Rajesh Kumar Singh"],
+         ["GRSE","--","Kolkata","Garden Reach Shipbuilders and Engineers | Built INS Dunagiri (Project 17A, 5th frigate) | Navratna CPSE"],
+         ["ADB","1966","Manila, Philippines","President: Masato Kanda (11th, Japan, since Feb 24, 2025) | $42.2M North-East Bamboo SEFF | $10M Schoolnet India | Members: 69"],
+         ["VOC Port","--","Thoothukudi, TN","V.O. Chidambaranar Port Authority | Launched PortGPT (India's first port enterprise AI app) | Scope-2 Emission Free Port"]],
+        [0.12,0.09,0.18,0.61]))
+    s.append(Spacer(1,6))
+
+    # GK2 INDIA RANKINGS
+    s+=sec("GK2","INDIA RANKINGS THIS WEEK",gk=True)
+    s.append(mktbl(
+        ["Metric","India's Rank/Value","Source / Note"],
+        [["Ship Recycling (2025)","#1 Globally (35.4% market share, 2.99 million GT)","UNCTAD | Maritime India Vision 2030 target achieved 5 years early"],
+         ["Remittances (FY25)","#1 Globally ($135.4 Billion)","World Bank | Top receivers: India, Mexico, China, Philippines, Egypt"],
+         ["Energy Transition Index 2026","70th (Score: 54.9)","WEF | Sweden tops | 1.9% improvement from previous year"],
+         ["GDP Real Growth FY26","7.7% (Nominal: 8.9%)","NSO / MoSPI | Q4 FY26: Real 7.8%, Nominal 9.1%"],
+         ["GDP Forecast CY2026 (GS)","6.8% (upgraded from 6.5%)","Goldman Sachs | FY27 forecast: 6.5% (upgraded 40 bps)"],
+         ["India AI Mission Budget","Rs.10,372 Crore","GoI | AI compute infrastructure, datasets, skilling"]],
+        [0.30,0.30,0.40]))
+    s.append(Spacer(1,6))
+
+    # GK3 SCHEMES
+    s+=sec("GK3","KEY GOVERNMENT SCHEMES -- REFERENCE",gk=True)
+    s.append(mktbl(
+        ["Scheme","Ministry/Dept","Key Detail"],
+        [["DISHA 2.0 (2026-31)","Dept of Justice, MoL&J | Minister: Arjun Ram Meghwal","Rs.255 Crore | 100% Central | 3 crore beneficiaries | 4 components: Tele-Law, Nyaya Bandhu, LLLAP, Vidhi Sanjeevani"],
+         ["PM Surya Ghar Muft Bijli Yojana","Ministry of New and Renewable Energy","Rs.78,000 central subsidy for residential rooftop solar installation | Key driver of India's WEF Energy Transition ranking improvement"],
+         ["BHARATI (APEDA)","Ministry of Commerce & Industry","Bharat's Hub for Agritech, Resilience, Advancement and Incubation for Export Innovation | Cohort 1: 100 startups, 22 states/2 UTs"],
+         ["Youth Co:Lab","UNDP India + Citi Foundation + NITI AIM","8th edition 2026 | Rs.3.5L winners grant | Implementing: T-Hub Foundation, Hyderabad"],
+         ["Hub and Spoke Model (Aviation)","Ministry of Civil Aviation (K. Rammohan Naidu)","India's first Easy Connect flight: Varanasi (June 25, 2026) | 17 int'l destinations via Delhi hub | 6 more cities planned"],
+         ["National Bamboo Mission","Ministry of Agriculture","Promotes bamboo cultivation and value addition | ADB SEFF $42.2M for 6 NE states complement this"],
+         ["Atmanirbhar Bharat (Defence)","MoD","IIT Ropar: Rs.120 Cr ATB projects (Autonomous Vehicles + DEW) | INS Dunagiri (GRSE, Project 17A)"],
+         ["HADR Doctrine (India)","MoD / MEA","Operation Dost (2023), Karuna (2023), Ajay (2023), Sadbhav (2023), Amistad (2026)"]],
+        [0.22,0.23,0.55]))
+    s.append(Spacer(1,6))
+
+    # GK4 DEFENCE REFERENCE
+    s+=sec("GK4","DEFENCE -- COMPLETE REFERENCE",gk=True)
+    s.append(mktbl(
+        ["System/Project","Service","Key Detail"],
+        [["INS Dunagiri (Project 17A)","Indian Navy","5th of 7 advanced stealth frigates | Built: GRSE Kolkata | Design: Warship Design Bureau | Named after Dunagiri Peak, Uttarakhand (6,939m)"],
+         ["NETRA AEW&CS (FOC: June 25, 2026)","IAF","Sanskrit for 'Eye' | 270 deg radar coverage | Embraer EMB-145I platform | CABS, DRDO, Bengaluru | 3 aircraft at Bhisiana AFB, Punjab (No. 200 Sqn)"],
+         ["NETRA MK-2","IAF","6 Airbus A321 aircraft | Rs.19,000 Cr | CCS approved July 2025 | 300-360 deg coverage"],
+         ["AH-64E Apache Guardian","IAF + Army","28 helicopters (22 IAF + 6 Army) | $198.2M US sustainment package | Boeing + Lockheed Martin | Longbow radar, Hellfire missiles"],
+         ["M777A2 Ultra-Light Howitzer","Indian Army","155mm towed artillery | $230M US sustainment package | Assembled by Mahindra Defence (120 units) | Used in high-altitude terrain"],
+         ["BHISHM Cube","Indian Army (HADR)","Deployable in 12 minutes | ICU + OT + X-ray + pharmacy + lab | Used in Turkey (2023) and Venezuela (2026)"],
+         ["BrahMos (Export)","DRDO + Russia JV","Speed: Mach 2.8-3.0 | Range: 450-600 km | Export: Philippines (1st, deal 2022) | Vietnam (2nd, ~$629M deal, Shangri-La 2026)"],
+         ["IIT Ropar DEW + Autonomous Vehicles","Indian Army (27th ATB)","Rs.120 Cr | Atmanirbhar Bharat | Directed Energy Weapons for anti-drone and missile defence"],
+         ["Operation Amistad (Venezuela 2026)","IAF + Army","2x C-17 Globemaster | 41-member 60 Para Field Hospital | 35+ tonnes relief | 2x BHISHM Cube | Hindon AFB"]],
+        [0.22,0.12,0.66]))
+    s.append(Spacer(1,6))
+
+    # GK5 BANKING
+    s+=sec("GK5","BANKING & FINANCE REFERENCE",gk=True)
+    s.append(mktbl(
+        ["Topic","Key Facts"],
+        [["RBI Governor","Sanjay Malhotra (26th Governor, since Dec 11, 2024)"],
+         ["PFC Dollar Bond","$300M | 5-year | Rate: 5.32% (US Treasury 4.27% + 105 bps) | First NBFC/CPSU to use RBI Subsidized Hedging Facility"],
+         ["IRFC OFS","Up to 2% stake | Base 1% + Greenshoe 1% | Nodal: DIPAM | Budget 2026-27 target: Rs.80,000 crore disinvestment + asset monetisation"],
+         ["Meta-CRED Deal","$900M investment | CRED valuation: $4.5B | Kunal Shah: Global Head of WhatsApp | Miten Sampat: Interim CRED CEO"],
+         ["UPI Market Cap Rule","30% per app from December 2026 | PhonePe (46.2%) + Google Pay (32.7%) = ~79% (May 2026)"],
+         ["BHIM Super App","Credit cards, loans, MF, insurance, pension + CIBIL score (via NBSL-TransUnion CIBIL tie-up)"],
+         ["EPF Rate","8.25% for FY 2025-26"],
+         ["NRE/FCNR Exemption","RBI exempted CRR (3%) and SLR (18%) on fresh NRE and FCNR(B) deposits (June-Sept 2026) to attract NRI inflows"],
+         ["Skydo Canada License","First Indian cross-border payments platform licensed overseas (RPAA, Bank of Canada) | India-Canada trade: ~CAD 13.6B, target CAD 70B by 2030"],
+         ["World Bank $1.5B","Boosting Job Creation in Private Sector DPF Operation | Target: 11 million youth/year over 2 decades"],
+         ["GMR Nagpur Airport","30-year concession from MIHAN India Ltd | GMR Group: Delhi IGIA, Hyderabad RGIA, Goa Mopa, Bidar"]],
+        [0.30,0.70]))
+    s.append(Spacer(1,6))
+
+    # GK6 INTERNATIONAL RELATIONS
+    s+=sec("GK6","KEY COUNTRY FACTS THIS WEEK",gk=True)
+    s.append(mktbl(
+        ["Country/Entity","Capital","Key Fact This Week"],
+        [["Colombia","Bogota","New President-elect: Abelardo de la Espriella ('El Tigre') | Currency: Colombian Peso"],
+         ["United Kingdom","London","PM Keir Starmer resigned (June 22, 2026) | 7th PM in a decade | Monarch: King Charles III"],
+         ["Japan","Tokyo","PM: Sanae Takaichi (Japan's first woman PM; LDP; since Oct 2025) | Currency: Yen | Emperor: Naruhito | 16th India-Japan Summit July 2026"],
+         ["Venezuela","Caracas","Twin earthquakes 7.5+7.2 magnitude (June 24-25, 2026) | India launched Operation Amistad | Interim President: Delcy Rodriguez"],
+         ["Vietnam","Hanoi","President: To Lam (Communist Party General Secretary; elected April 7, 2026) | BrahMos deal ($629M) | India-Vietnam: Enhanced Comprehensive Strategic Partnership (May 2026)"],
+         ["Panama","Panama City","Hosted 56th OAS General Assembly (June 22-24, 2026) | President: Jose Raul Mulino | Currency: Balboa / US Dollar"],
+         ["New Zealand","Wellington","India defeated NZ in FIH Women's Nations Cup 2026 final (Auckland) | PM: Christopher Luxon | Currency: NZ Dollar"]],
+        [0.18,0.12,0.70]))
+    s.append(Spacer(1,6))
+
+    # GK7 TEMPLES & HERITAGE
+    s+=sec("GK7","TEMPLES & HERITAGE REFERENCE",gk=True)
+    s.append(mktbl(
+        ["Temple/Site","Location","Key Detail"],
+        [["Kamakhya Temple (Ambubachi Mela)","Nilachal Hills, Guwahati, Assam","Annual Ambubachi Mela (June 22-26, 2026) | Marks menstrual cycle of Goddess Kamakhya | Assam CM: Himanta Biswa Sarma"],
+         ["Kashi Vishwanath Temple","Varanasi, Uttar Pradesh","One of 12 Jyotirlingas | Renovated under Kashi Vishwanath Corridor (2021)"],
+         ["Jagannath Temple, Puri","Puri, Odisha","One of Char Dham | Famous for annual Rath Yatra"],
+         ["Konark Sun Temple","Konark, Odisha","UNESCO World Heritage Site | 13th century | Built by King Narasimhadeva I (Eastern Ganga dynasty)"],
+         ["Baidyanath Dham","Deoghar, Jharkhand","1 of 12 Jyotirlingas | Also called Vaidyanath temple"]],
+        [0.22,0.22,0.56]))
+    s.append(Spacer(1,6))
+
+    # GK8 CONSTITUTIONAL REFERENCE
+    s+=sec("GK8","CONSTITUTIONAL & NATIONAL EMERGENCY REFERENCE",gk=True)
+    terms=[
+        ("National Emergency -- Article 352",
+         "Empowers President to declare a National Emergency when India's security is threatened by war, external aggression, or armed rebellion. 1975 Emergency: Declared June 25, 1975 under 'internal disturbance' by President Fakhruddin Ali Ahmed (5th President, 1974-1977) on advice of PM Indira Gandhi (3rd PM, 1966-77, 1980-84). Duration: June 25, 1975 to March 21, 1977 (21 months). Effects: Civil liberties suspended, elections postponed, press censorship. Samvidhan Hatya Diwas: Observed June 25. 44th Constitutional Amendment (1978): Replaced 'internal disturbance' with 'armed rebellion' -- making Art. 352 harder to misuse."),
+        ("Passports Act, 1967",
+         "Law governing issue and regulation of Indian passports. Enacted June 24, 1967. Passport Seva Divas: Celebrated June 24 annually."),
+        ("Article 39A -- Equal Justice and Free Legal Aid",
+         "Directive Principle (Part IV) inserted by 42nd Constitutional Amendment (1976). Mandates state to ensure equal justice and provide free legal aid. DISHA 2.0 explicitly fulfills this mandate."),
+    ]
+    for term,defn in terms: s+=kt(term,defn)
+    s.append(Spacer(1,6))
+
+    # GK9 IMPORTANT DAYS BACKGROUND
+    s+=sec("GK9","IMPORTANT DAYS -- BACKGROUND REFERENCE",gk=True)
+    terms=[
+        ("International Day of Yoga (June 21)",
+         "Proposed by PM Modi at UNGA on September 27, 2014. Adopted by UNGA on December 11, 2014 with 177 nations co-sponsoring. First celebrated globally June 21, 2015. June 21 = Summer Solstice (longest day in Northern Hemisphere). 12th edition in 2026. Theme 2026: 'Yoga for Healthy Aging'. Ministry of Ayush (Minister: Prataprao Jadhav MoS I/C). Guinness Record 2026: 4,35,831 YouTube Live viewers."),
+        ("World Drug Day (June 26)",
+         "International Day Against Drug Abuse and Illicit Trafficking. Established by UNGA in 1987. 2026 Theme: 'World drug problem: persisting issues, new challenges, innovative responses.' UNODC HQ: Vienna, Austria. Executive Director: Monica Juma (Kenya)."),
+        ("International Widows Day (June 23)",
+         "Ratified by the United Nations in 2010 (UNGA Resolution 65/189). Theme 2026: 'Justice, Dignity and Economic Power for Widows.' Loomba Foundation instrumental in UN recognition."),
+        ("UN Public Service Day (June 23)",
+         "Established by UNGA in 2003. 2026 UN Public Service Forum hosted in Tbilisi, Georgia. Theme: 'Transforming Public Institutions: Advancing Innovation, Participation, and Inclusion.'"),
+        ("MSME Day (June 27)",
+         "Established by the UN in 2017. 2026 Theme: 'Human-Centered Entrepreneurship in an AI-Driven Future.' MSME Contribution to India: ~31% of GDP, ~48% of exports, 38.9 crore people employed, 8.7 crore+ registered on Udyam portal. MSME Classification (Revised April 1, 2025): Micro: Rs.2.5 Cr investment + Rs.10 Cr turnover | Small: Rs.25 Cr + Rs.100 Cr | Medium: Rs.125 Cr + Rs.500 Cr."),
+    ]
+    for term,defn in terms: s+=kt(term,defn)
+    s.append(Spacer(1,6))
+
+    # GK10 ADDITIONAL REFERENCE
+    s+=sec("GK10","ADDITIONAL KEY FACTS & REFERENCE TABLES",gk=True)
+
+    s+=gksub("MSME Classification -- Revised April 1, 2025:")
+    s.append(mktbl(
+        ["Category","Max Investment","Max Annual Turnover","Key Note"],
+        [["Micro Enterprise","Up to Rs.2.5 Crore","Up to Rs.10 Crore","Raised from Rs.1 Cr investment / Rs.5 Cr turnover (2020 limits)"],
+         ["Small Enterprise","Up to Rs.25 Crore","Up to Rs.100 Crore","Raised from Rs.10 Cr / Rs.50 Cr (2020 limits)"],
+         ["Medium Enterprise","Up to Rs.125 Crore","Up to Rs.500 Crore","Raised from Rs.50 Cr / Rs.250 Cr (2020 limits)"]],
+        [0.18,0.22,0.22,0.38]))
+    s.append(Spacer(1,4))
+
+    s+=gksub("India-UK CETA Key Benefits (Effective July 15, 2026):")
+    s+=[sg("UK eliminates duties on <b>99% of Indian tariff lines</b> immediately"),
+        sg("Key sectors: processed foods (70% tariff removed), textiles and clothing (12%), leather and footwear (16%), engineering goods (18%), marine products (21.5%)"),
+        sg("<b>20,000 annual UK service visas</b> for Indian professionals"),
+        sg("Scotch whisky tariffs: 150% to 40% | EV tariffs phased down over 10 years"),
+        sg("DCC (Double Contribution Convention): Indian IT professionals on UK assignments exempt from double social security for up to <b>5 years</b>"),
+        sg("Signed: London, July 24, 2025 after 14 rounds of negotiations over 3 years"),
+        Spacer(1,4)]
+
+    s+=gksub("India's Energy Storage and Ethanol Reference:")
+    s+=[sg("India's Energy Storage Target: <b>410 GWh</b> by 2032"),
+        sg("20% ethanol blending (E20) achieved | E85 fuel (80-85% ethanol blend) launched | India AI Mission: Rs.10,372 Crore"),
+        sg("India's Renewable Targets: 500 GW total non-fossil fuel by 2030 | Net-Zero: 2070"),
+        sg("WEF Energy Transition Index 2026: India = <b>70th</b> (Score: 54.9) | Top 5: Sweden, Finland, Denmark, Estonia, Norway"),
+        Spacer(1,4)]
+
+    s+=gksub("Key India Rankings This Week:")
+    s+=[sg("Ship Recycling: India = <b>#1 globally</b> (35.4% market share, 2.99 million gross tons, 2025) -- 5 years ahead of Maritime India Vision 2030"),
+        sg("Remittances: India = <b>#1 globally</b> ($135.4 Billion FY25) | Top Receivers: India, Mexico, China, Philippines, Egypt"),
+        sg("Energy Transition (WEF 2026): India = <b>70th</b> (Sweden tops)"),
+        sg("India GDP: 7.7% real growth (FY26) | Goldman Sachs CY2026 forecast: <b>6.8%</b>"),
+        Spacer(1,4)]
+
+    s+=gksub("4 Types of NPCI Subsidiaries:")
+    s.append(mktbl(
+        ["Subsidiary","Full Form","Role"],
+        [["NIPL","NPCI International Payments Limited","Deploys UPI and RuPay globally | UPI in 20+ countries"],
+         ["NBBL","NPCI Bharat BillPay Limited","Operates BBPS (Bharat Bill Payment System)"],
+         ["NBSL","NPCI BHIM Services Limited","Operates and manages BHIM app | CIBIL integration"],
+         ["NTSL","NPCI Tech Solutions Limited","Focuses on AI, eKYC, deep payment technology"]],
+        [0.12,0.35,0.53]))
+    s.append(Spacer(1,4))
+
+    s+=gksub("India Major Ports Reference:")
+    s+=[sg("JN Port (Navi Mumbai, Maharashtra) | Deendayal Port (Kandla, Gujarat) | Paradip Port (Odisha) | Cochin Port (Kerala)"),
+        sg("VOC Port (Thoothukudi, Tamil Nadu) -- PortGPT launched | Kamarajar Port (Tamil Nadu) | Chennai Port | Visakhapatnam Port (AP)"),
+        sg("Syama Prasad Mookerjee Port (Kolkata, WB) | New Mangalore Port (Karnataka) | Mormugao Port (Goa) | Mumbai Port | Galathea Bay Port (Andaman and Nicobar)"),
+        sg("Vadhavan Port (Maharashtra) -- under development | Ministry of Ports, Shipping and Waterways: <b>Sarbananda Sonowal</b>"),
+        Spacer(1,6)]
+
+    s.append(rule())
+    s.append(Paragraph("Weekly Current Affairs Compilation  |  21 June to 27 June 2026  |  100% Coverage Edition  |  DailyCA_QuizZ",s_ft))
+    return s
+
+out="/mnt/user-data/outputs/Weekly_CA_21_27_June_2026_COMPLETE.pdf"
+doc=SimpleDocTemplate(out,pagesize=A4,leftMargin=LM,rightMargin=RM,topMargin=TM,bottomMargin=BM,
+    title="Weekly CA 21-27 June 2026 -- 100% Coverage -- DailyCA_QuizZ",author="DailyCA_QuizZ")
+doc.build(build(),onFirstPage=on_page,onLaterPages=on_page)
+print(f"Done: {out}")
+MAINEOF
+echo "Script ready"
+Output
+
+Script ready
