@@ -1,0 +1,113 @@
+bash
+
+cat > /home/claude/build_weekly.py << 'EOF'
+# Weekly CA PDF Builder — 21 June to 27 June 2026
+# 100% coverage of all 6 daily PDFs
+
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from reportlab.lib.units import mm
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable, PageBreak
+from reportlab.lib.enums import TA_CENTER
+from reportlab.platypus.flowables import Flowable
+from reportlab.lib.colors import HexColor
+
+NAV=HexColor("#0D1B2A"); GOLD=HexColor("#E8A838"); SKY=HexColor("#4FC3F7")
+PRP=HexColor("#7B1FA2"); TEA=HexColor("#00897B"); WHT=colors.white; BLK=colors.black
+ROW1=HexColor("#F5F7FA"); ROW2=HexColor("#FFFFFF"); BDR=HexColor("#CFD8DC"); GKN=HexColor("#0A2540")
+W,H=A4; LM=RM=13*mm; TM,BM=22*mm,13*mm
+
+def S(name,**kw):
+    base=dict(fontName="Helvetica",fontSize=8.5,leading=13,textColor=BLK,spaceAfter=2)
+    base.update(kw); return ParagraphStyle(name,**base)
+
+s_toc=S("toc",fontSize=8,textColor=HexColor("#90CAF9"),leading=12)
+s_th=S("th",fontName="Helvetica-Bold",fontSize=8,textColor=WHT,alignment=TA_CENTER,leading=11)
+s_td=S("td",fontSize=7.8,textColor=BLK,leading=11)
+s_bull=S("bull",fontSize=8.5,leftIndent=11,firstLineIndent=-11,leading=13,spaceAfter=2)
+s_sg=S("sg",fontSize=8.5,leftIndent=11,firstLineIndent=-11,leading=13,spaceAfter=2,textColor=HexColor("#1A237E"))
+s_kt_h=S("kt_h",fontName="Helvetica-Bold",fontSize=8.5,textColor=PRP,spaceBefore=4,spaceAfter=1)
+s_kt_b=S("kt_b",fontSize=8,textColor=HexColor("#4A148C"),leftIndent=6,spaceAfter=4,leading=12)
+s_gk_s=S("gk_s",fontName="Helvetica-Bold",fontSize=8.5,textColor=TEA,spaceBefore=6,spaceAfter=2)
+s_ft=S("ft",fontSize=7,textColor=HexColor("#90A4AE"),alignment=TA_CENTER)
+
+def uw(): return W-LM-RM
+
+class CoverBand(Flowable):
+    def __init__(self,w): Flowable.__init__(self); self.W=w; self.height=210
+    def draw(self):
+        c=self.canv
+        c.setFillColor(NAV); c.roundRect(0,0,self.W,self.height,8,fill=1,stroke=0)
+        c.setStrokeColor(GOLD); c.setLineWidth(2.5)
+        c.line(18,self.height-16,self.W-18,self.height-16); c.line(18,14,self.W-14,14)
+        c.setFillColor(GOLD); c.setFont("Helvetica-Bold",25)
+        c.drawCentredString(self.W/2,self.height-56,"Weekly Current Affairs")
+        c.setFillColor(WHT); c.setFont("Helvetica-Bold",14)
+        c.drawCentredString(self.W/2,self.height-79,"21 June — 27 June 2026  |  Compilation Edition")
+        c.setFillColor(HexColor("#B0BEC5")); c.setFont("Helvetica",8.5)
+        c.drawCentredString(self.W/2,self.height-97,"Part 1: Current Affairs News   |   Part 2: Complete Static GK")
+        c.setFillColor(GOLD); c.roundRect(self.W/2-75,self.height-129,150,18,5,fill=1,stroke=0)
+        c.setFillColor(NAV); c.setFont("Helvetica-Bold",8)
+        c.drawCentredString(self.W/2,self.height-123,"Telegram: DailyCA_QuizZ")
+        for x,lbl in [(self.W*0.27,"PART 1"),(self.W*0.73,"PART 2")]:
+            col=GOLD if "1" in lbl else SKY
+            c.setFillColor(col); c.setFont("Helvetica-Bold",9); c.drawCentredString(x,self.height-155,lbl)
+            c.setFillColor(WHT); c.setFont("Helvetica",8)
+            c.drawCentredString(x,self.height-167,"News (21–27 June)" if "1" in lbl else "Static GK & Reference")
+
+class SecBar(Flowable):
+    def __init__(self,num,title,w,gk=False): Flowable.__init__(self); self.num,self.title,self.W,self.gk=num,title,w,gk; self.height=22
+    def draw(self):
+        c=self.canv; c.setFillColor(GKN if self.gk else NAV); c.roundRect(0,0,self.W,self.height,5,fill=1,stroke=0)
+        c.setFillColor(GOLD); c.roundRect(7,4,26,14,3,fill=1,stroke=0)
+        c.setFillColor(NAV); c.setFont("Helvetica-Bold",8.5); c.drawCentredString(20,8,self.num)
+        c.setFillColor(WHT); c.setFont("Helvetica-Bold",11.5); c.drawString(40,6,f"■  {self.title}")
+
+class NHBar(Flowable):
+    def __init__(self,hl,dt,w): Flowable.__init__(self); self.hl,self.dt,self.W=hl,dt,w; self.height=19
+    def draw(self):
+        c=self.canv; c.setFillColor(HexColor("#E8F4FD")); c.roundRect(0,0,self.W,self.height,4,fill=1,stroke=0)
+        c.setFillColor(GOLD); c.rect(0,0,4,self.height,fill=1,stroke=0)
+        c.setFillColor(NAV); c.roundRect(self.W-52,4,48,11,3,fill=1,stroke=0)
+        c.setFillColor(GOLD); c.setFont("Helvetica-Bold",7); c.drawCentredString(self.W-28,7.5,self.dt)
+        c.setFillColor(NAV); c.setFont("Helvetica-Bold",8.5); c.drawString(10,5.5,self.hl)
+
+class PartDiv(Flowable):
+    def __init__(self,w,title): Flowable.__init__(self); self.W,self.title=w,title; self.height=36
+    def draw(self):
+        c=self.canv; c.setFillColor(GKN); c.roundRect(0,0,self.W,self.height,6,fill=1,stroke=0)
+        c.setStrokeColor(GOLD); c.setLineWidth(1.5)
+        c.line(16,self.height-12,self.W-16,self.height-12); c.line(16,10,self.W-16,10)
+        c.setFillColor(GOLD); c.setFont("Helvetica-Bold",13); c.drawCentredString(self.W/2,self.height/2-5,self.title)
+
+def sec(num,title,gk=False): return [Spacer(1,6),SecBar(num,title,uw(),gk=gk),Spacer(1,5)]
+def nh(hl,dt): return [NHBar(hl,dt,uw()),Spacer(1,2)]
+def b(t): return Paragraph(f'<font color="#E8A838">●</font>  {t}',s_bull)
+def sg(t): return Paragraph(f'<font color="#E8A838">◆</font>  {t}',s_sg)
+def kt(term,defn): return [Paragraph(f"■ {term}:",s_kt_h),Paragraph(defn,s_kt_b)]
+def rule(): return HRFlowable(width="100%",thickness=0.5,color=BDR,spaceBefore=4,spaceAfter=4)
+def gksub(t): return [Spacer(1,4),Paragraph(f"■  {t}",s_gk_s),Spacer(1,2)]
+
+def mktbl(headers,rows,cws,alt=ROW1):
+    u=uw(); cws=[u*x for x in cws]
+    data=[[Paragraph(h,s_th) for h in headers]]
+    for row in rows: data.append([Paragraph(str(c),s_td) for c in row])
+    ts=TableStyle([("BACKGROUND",(0,0),(-1,0),NAV),("FONTNAME",(0,0),(-1,0),"Helvetica-Bold"),
+        ("FONTSIZE",(0,0),(-1,-1),7.8),("ALIGN",(0,0),(-1,-1),"LEFT"),("VALIGN",(0,0),(-1,-1),"MIDDLE"),
+        ("ROWBACKGROUNDS",(0,1),(-1,-1),[ROW2,alt]),("GRID",(0,0),(-1,-1),0.35,BDR),
+        ("TOPPADDING",(0,0),(-1,-1),3),("BOTTOMPADDING",(0,0),(-1,-1),3),
+        ("LEFTPADDING",(0,0),(-1,-1),5),("RIGHTPADDING",(0,0),(-1,-1),4)])
+    return Table(data,colWidths=cws,style=ts,repeatRows=1)
+
+def on_page(canvas,doc):
+    canvas.saveState(); canvas.setFillColor(NAV); canvas.rect(0,H-TM+2,W,TM,fill=1,stroke=0)
+    canvas.setFillColor(GOLD); canvas.setFont("Helvetica-Bold",7.5)
+    canvas.drawString(LM,H-14,"Weekly Current Affairs  |  21–27 June 2026")
+    canvas.setFillColor(HexColor("#B0BEC5")); canvas.setFont("Helvetica",7)
+    canvas.drawRightString(W-RM,H-14,f"Page {doc.page}  |  DailyCA_QuizZ"); canvas.restoreState()
+EOF
+echo "Base written"
+Output
+
+Base written
